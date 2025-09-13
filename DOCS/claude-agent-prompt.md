@@ -1,205 +1,106 @@
-# Prompt para Agente (GPT-5) – Redesign Minimalista + Glass Sutil
+# Prompt para Agente (GPT-5) – SpeedClip (MVP V1 em Angular, UI minimalista + glass sutil)
 
 ## Contexto
-
-- Projeto: Angular (bio-links-app), SASS, SPA.
-- Domínio do produto: Content-to-Ad Creator (Ads, Campaigns, ContentInput, Users).
-- Público: criadores de conteúdo. Dispositivos: 50/50 mobile/desktop.
-- Estilo desejado: minimalismo clean + toque sutil de glassmorphism.
+- Projeto: Angular (SpeedClip), SASS, SPA standalone (Angular ≥ 17), RxJS e Reactive Forms.
+- Domínio: `Videos`, `Cuts`, `Subtitles`, `Exports`, `Presets`, `Users`, `Plans/Usage`.
+- Fases: V1 (edição manual + legendas) → V2 (IA de cortes automáticos + transcrição multilíngue).
+- Referência do produto (obrigatória): `./sppedclip-context-app.md`.
+- Inspiração visual: imagens DOCS (`menu.png`, `lead_page.png`, `dark.png`) como referência para 
+  tema claro e escuro.
 
 ## Objetivo
+Entregar do zero um app Angular funcional (MVP V1) com:
+- Layout pronto (sidebar + topbar glass), rotas e telas mockadas (placeholders e dados fake) para todo o fluxo V1.
+- Design tokens (SCSS/CSS vars + TS), temas light/dark e ThemeService.
+- Componentes base (botões, forms, links) acessíveis (AA) e responsivos.
+- Qualidade técnica: Lighthouse ≥ 90, CLS < 0.1, TBT < 200ms.
 
-Atualizar tema e layout para minimalismo com glass sutil, aplicando via design tokens e componentes
-base, com acessibilidade e performance AA/90+ no Lighthouse.
+## Layout (inspirado, não copiado)
+- Estrutura: Sidebar fixa à esquerda + Topbar com glass + Conteúdo.
+- Sidebar: grupos simples (Workspace, Acquisition, Resources) com ícones minimalistas (sem glass), largura ~260px, colapsável a 72px.
+- Topbar: glass sutil (alpha 6–8%, blur 8–12px, borda 1px), breadcrumbs à direita do logo, ações contextuais à direita.
+- Conteúdo: espaçamento 24–48px, grid 8px, no máximo 3 elementos-chave por área.
 
-## Escopo de aplicação
+## Mapa de rotas e telas (mockadas com layout final)
+- `/auth` (lazy): Login, Cadastro, Esqueci senha.
+- `/` → Dashboard/Histórico (lazy): lista de vídeos e cortes recentes; filtros simples; CTA Upload.
+- `/upload` (lazy): upload de arquivo e input de URL YouTube; validação; opção "Editar antes".
+- `/editor/:videoId` (lazy): timeline simples, waveform placeholder, chips de Cuts com drag mínimo fictício; botões duplicar trecho/remover intervalo.
+- `/subtitles/:videoId` (lazy): tabela/lista de legendas editáveis (start/end/text); importar via mock Whisper; presets visuais.
+- `/preview-export/:videoId` (lazy): preview placeholder; seleção 9:16/1:1/16:9, 720p/1080p; fila de export mock.
+- `/billing` (lazy): plano atual, upgrade/downgrade mock, limites de minutos.
+- Fallback: `**` → 404 minimalista.
 
-- Global: por meio de tokens SCSS e design tokens TS (sem hardcode de cores).
-- Glassmorphism: apenas no Header (Topbar). Não aplicar glass em cards, listas, tabelas ou quaisquer
-  outros elementos por padrão.
-- Preparação futura: criar somente a classe SCSS .glass-card (ver seção abaixo), mas NÃO
-  aplicar/usar em nenhum template/componente ainda.
-- Páginas/áreas afetadas:
-    - Dashboard: bio-links-app/src/app/features/dashboard/pages/*
-    - Content Creator (Input/Preview): bio-links-app/src/app/features/content-creator/pages/*
-    - Layout principal (header/topbar, containers): bio-links-app/src/app/layouts/main-layout/*
-    - Auth: manter minimalista, sem glass.
+## Scaffold e estrutura (criar se não existir)
+- Use feature modules lazy (standalone routes/components):
+  - `features/auth`, `features/dashboard`, `features/upload`, `features/editor`, `features/subtitles`, `features/preview-export`, `features/billing`.
+  - `layouts/main-layout` (sidebar, topbar, content outlet).
+  - `shared/components` (buttons, forms, links, status-bar), `shared/constants` (design-tokens.ts), `core/services` (theme.service.ts, api-mock.service.ts).
+- Comandos (exemplo):
+  - Criar layout: `ng g c app/layouts/main-layout --standalone --flat=false`.
+  - Rotas por feature: `ng g c app/features/upload/upload-page --standalone` e `ng g r app/features/upload/upload.routes` (repetir por feature).
+  - Serviços: `ng g s app/core/services/theme` e `ng g s app/core/services/api-mock`.
 
-## Estilo obrigatório
+## Tokens e temas (não negociar)
+- SCSS: `src/styles/abstracts/tokens.scss`, `variables.scss`, `mixins.scss` (glass), `base/typography.scss`.
+- TS: `src/app/shared/constants/design-tokens.ts`, `src/app/core/services/theme.service.ts`.
+- CSS vars obrigatórias: `--color-bg`, `--color-surface`, `--color-text`, `--color-text-muted`, `--color-primary`, `--color-accent`, `--color-success`, `--color-warn`, `--color-error`, `--glass-bg`, `--glass-blur`, `--glass-border`, `--spacing-*`, tipos, radius e transitions.
+- Temas: `:root[data-theme='light']` e `:root[data-theme='dark']`. ThemeService aplica `data-theme` no `<html>`, persiste em `localStorage` e respeita `prefers-color-scheme`.
+- Paleta padrão: usar P2 (neutra + ciano). Se alterar, justificar e manter contraste AA.
 
-- Minimalismo:
-    - Espaço em branco generoso (grid base 8px; seções 80–120px).
-    - Máx. 3 elementos-chave por seção.
-    - Tipografia com hierarquia clara; line-height ≥ 1.6.
-    - Paleta neutra/sóbria + 1 acento discreto.
-    - Microinterações discretas; foco no conteúdo.
-- Glass (controlado):
-    - background com alpha baixo (≈ 6–8%), ex.: rgba(255,255,255,0.06) no tema dark.
-    - backdrop-filter: blur 8–12px; saturate leve.
-    - Borda 1px sutil (ex.: rgba(255,255,255,0.12)).
-    - Sombras ausentes ou bem leves; evitar múltiplas camadas.
-    - Performance: não usar em listas longas/áreas com scroll pesado.
+## Componentes base
+- Botões (filled/outline/ghost; sm/md/lg; estado loading), Links, Inputs/Select/Textarea com focus-ring visível; validação de erro e `aria-*`.
+- `.glass-card` definido em `styles/components/cards.scss` e não utilizado.
+- Status-bar (sucesso/erro/warn) com tokens de cor; sem sombras pesadas.
 
-## Cores
+## Serviços e mocks
+- `ApiMockService`: in-memory com entidades mínimas: Video {id, title, duration, createdAt, status}, Cut {id, videoId, start, end, title}, Subtitle {id, videoId, start, end, text, preset}, ExportJob {id, videoId, format, resolution, status}, Plan {tier, minutesLimit, minutesUsed}.
+- Fornecer observables (BehaviorSubject) e latency simulada (200–600ms). Persistir em `localStorage` apenas para demo.
+- `WhisperMock`: método que gera legendas fake a partir de timestamps sequenciais.
 
-- Traga 2–3 paletas AA e recomende 1. Eu aprovo antes de aplicar.
-- Fallback se não houver resposta:
-    - Dark: bg #0B0D0F, surface #121417, text #EAECEF, muted #9AA3AF, accent #5B8DEF.
-    - Light: bg #F7F7F8, surface #FFFFFF, text #1B1F24, muted #6B7280, accent #2563EB.
+## Acessibilidade e performance
+- Contraste AA em texto e estados (hover/focus/disabled). Focus visível sempre.
+- Responsivo: 320/768/1024/1200+. Sidebar colapsa < 1024.
+- Performance: evitar heavy shadows/gradientes; imagens otimizadas; lazy routes; prefetch/priority hints quando aplicável.
 
-## Referências visuais (inspiração, não cópia)
+## Processo de execução (passo a passo)
+1) Planejar em 6–10 bullets (escopo/tarefas) e confirmar paleta P2.
+2) Criar layout (sidebar + topbar glass) e rotas raiz com lazy loading.
+3) Implementar tokens SCSS + design-tokens.ts + ThemeService (light/dark) e tipografia/base.
+4) Criar componentes base (buttons/forms/links/status-bar) com AA.
+5) Criar features e páginas mockadas conforme Mapa de rotas, usando `ApiMockService`.
+6) Editor/Legendas: timeline placeholder, chips de Cuts e lista editável de Subtitles.
+7) Preview & Export: UI com opções e fila mock.
+8) Testes mínimos e verificação Lighthouse; correções de contraste/perf.
+9) Entregar diffs por arquivo com justificativas.
 
-Use as imagens abaixo apenas como direção estética para calibrar densidade, hierarquia tipográfica,
-proporção de espaços e sutileza do glass. Não reproduza layouts, textos ou marcas; traduza os
-princípios para os nossos componentes e tokens.
+## Testes mínimos (Jest)
+- `ThemeService`: aplica e persiste tema; respeita `prefers-color-scheme`.
+- `UploadPage`: validação de arquivo/URL; estados de erro.
+- `EditorStore` (ou serviço do editor): criar/duplicar/remover cortes; limites.
 
-- Referência 1 – Sidebar/dashboard minimalista (light):
-  ![Ref Sidebar Minimal](./menu.png)
-- Referência 2 – Minimalismo + Glass sutil (dark):
-  ![Ref Glass Sutil](./dark.png)
+## Critérios de aceitação
+- Telas e rotas do Mapa implementadas (mockadas), layout final pronto e responsivo.
+- Tokens e temas funcionando; zero hardcode de cores.
+- Topbar com glass; `.glass-card` definido e não utilizado.
+- Acessibilidade AA; Lighthouse ≥ 90; `CLS < 0.1`, `TBT < 200ms`.
+- Código organizado por features; serviços com observables; sem dependência de NgRx (opcional no futuro).
 
-Como aplicar as referências:
-
-- Extraia: níveis de contraste, espaçamentos entre seções (80–120px), densidade de cards, bordas de
-  1px, blur de 8–12px, uso de 1 cor de acento.
-- Da Referência 1 especificamente: sidebar leve com divisores sutis de 1px, estados selecionados
-  discretos, hierarquia clara; não aplicar glass na sidebar.
-- Da Referência 2: topbar com glass sutil; conteúdos principais sem glass, foco em superfície neutra
-  e tipografia.
-- Traduza para tokens e estilos base (tipografia, espaçamentos, cores) antes de mexer nos templates.
-- Preserve acessibilidade: confirme AA em texto normal e estados hover/focus.
-
-Critérios baseados nas referências:
-
-- O resultado deve parecer igualmente “respirável”, com 2–3 elementos-chave por seção e glass apenas
-  no Topbar.
-- Nada de sombras pesadas ou múltiplas camadas; glass é acento, não protagonista.
-
-## Arquivos-alvo (editar via tokens, sem hardcode)
-
-- SCSS
-    - bio-links-app/src/styles/abstracts/tokens.scss
-    - bio-links-app/src/styles/abstracts/variables.scss
-    - bio-links-app/src/styles/abstracts/mixins.scss (mixins de glass)
-    - bio-links-app/src/styles/base/typography.scss
-    - bio-links-app/src/styles/components/buttons.scss, cards.scss, forms.scss, links.scss,
-      status-bar.scss
-    - bio-links-app/src/styles/layouts/*.scss (containers, grid)
-- TypeScript
-    - bio-links-app/src/app/shared/constants/design-tokens.ts (espelhar as cores/tokens)
-    - bio-links-app/src/app/core/services/theme.service.ts (integrar tokens se aplicável)
-- Layouts/Componentes de aplicação
-    - bio-links-app/src/app/layouts/main-layout/topbar/* (aplicar glass)
-    - bio-links-app/src/app/features/dashboard/pages/*
-    - bio-links-app/src/app/features/dashboard/components/*
-    - bio-links-app/src/app/features/content-creator/pages/* (incl. content-input.*)
-    - bio-links-app/src/app/features/content-creator/components/*
-    - bio-links-app/src/app/shared/components/* (buttons, etc.)
-
-## Design tokens (preferência)
-
-- Colors: --color-bg, --color-surface, --color-text, --color-text-muted, --color-primary,
-  --color-accent.
-- Glass: --glass-bg (rgba), --glass-blur (8–12px), --glass-border (1px rgba), --glass-shadow (leve
-  ou none).
-- Spacing: xs 8, sm 16, md 24, lg 48, xl 80, section 80–120.
-- Type: base 16, lg 20, xl 24, 2xl 32, 3xl 48; line-heights: 1.25/1.6/1.8.
-- Transitions: 0.15s/0.3s/0.5s ease.
-
-## Política de tokens, reuso e limpeza de SCSS
-
-- Reuso primeiro: antes de criar tokens novos, mapeie e reutilize variáveis existentes em
-  abstracts/tokens.scss e abstracts/variables.scss. Não duplique nomes; se precisar renomear por
-  consistência, crie alias temporário e migre as ocorrências.
-- Varredura anti-hardcode: faça um sweep em src/**/*.scss e src/**/*.html procurando cores e valores
-  “mágicos”. Substitua por tokens.
-    - Procurar (exemplos): /#[0-9a-fA-F]{3,8}/, rgba\(.*\), hsla?\(.*\), box-shadow, border-color,
-      background(-color)?.
-    - Substituir por: var(--color-*) e tokens de espaçamento/tipografia.
-- Remoção de sujeira: elimine variáveis não utilizadas, imports redundantes e estilos mortos.
-  Consolide duplicatas em components/ e layouts/ usando mixins/utilitários.
-- Single source of truth: todas as cores passam por CSS Custom Properties. Se existir variável SCSS
-  equivalente, faça ela apontar para a CSS var (ex.: $color-text: var(--color-text)).
-- TS em sincronia: atualize shared/constants/design-tokens.ts para refletir os mesmos
-  nomes/valores (para ThemeService e stories/tests).
-
-## Temas (Light e Dark)
-
-- Manter paridade completa entre temas claro e escuro.
-- Escopo dos tokens por tema:
-    - :root[data-theme='light'] { …tokens light… }
-    - :root[data-theme='dark'] { …tokens dark… }
-- ThemeService:
-    - Usar app/core/services/theme.service.ts para aplicar/remover data-theme no <html>.
-    - Persistir escolha (localStorage) e respeitar prefers-color-scheme como default.
-    - Expor toggleTheme() e getCurrentTheme().
-- Estados/contraste: validar AA em ambos os temas, incluindo hover/focus/disabled.
-
-## Classe de Card com Glass (definir, não usar ainda)
-
-- Local: bio-links-app/src/styles/components/cards.scss
-- Adicionar a classe utilitária .glass-card com base nos tokens:
-    - background: var(--glass-bg);
-    - backdrop-filter: blur(var(--glass-blur));
-    - -webkit-backdrop-filter: blur(var(--glass-blur));
-    - border: var(--glass-border);
-    - box-shadow: var(--glass-shadow, none);
-    - border-radius: var(--radius-card, 12px);
-    - padding: var(--spacing-lg);
-- Não aplicar essa classe em nenhum template/HTML/Angular por enquanto. Não importar dinamicamente.
-
-## Componentes alvo
-
-- Header (Topbar):
-    - Glass controlado (tokens acima), navegação responsiva, foco/hover AA.
-- Classe SCSS para card (não aplicar):
-    - .glass-card criada em styles/components/cards.scss apenas para uso futuro.
-- MinimalButton:
-    - Variants: filled/outline/ghost; tamanhos: sm/md/lg; estado loading.
-    - Hovers/focus com contraste AA; área de foco visível.
-- Forms/Links:
-    - Estados focus/invalid claros; validações visuais discretas.
-
-## Processo de trabalho
-
-1) Propor plano em 5–8 bullets e 2–3 paletas AA; recomendar 1.
-2) Após aprovação, atualizar tokens SCSS + shared/constants/design-tokens.ts; integrar com
-   ThemeService se existir.
-3) Executar sweep de limpeza: remover hardcodes, migrar para tokens, apagar variáveis mortas.
-4) Ajustar base (tipografia, espaçamento) e componentes (buttons, cards, forms, links) usando
-   tokens.
-5) Aplicar glass somente no Topbar. Criar a classe .glass-card em styles/components/cards.scss, mas
-   não usá-la em nenhum elemento.
-6) Entregar diffs por arquivo com breve justificativa de cada mudança.
-
-## Crit��rios de aceitação
-
-- Acessibilidade: contrastes AA em texto e elementos interativos (incl. hover/focus/disabled).
-- Glass restrito exclusivamente ao Topbar; nenhum outro elemento com backdrop-filter/var(--glass-*)
-  ativo.
-- A classe .glass-card existe em styles/components/cards.scss e não é referenciada em nenhum
-  HTML/SCSS (grep por "glass-card" retorna apenas a definição).
-- Zero hardcode de cores; tudo via tokens em SCSS/TS; variáveis não utilizadas removidas.
-- Temas: claro e escuro funcionais, persistência no ThemeService e respeito a prefers-color-scheme.
-- Responsividade: 320/768/1024/1200+.
-- Lighthouse: ≥ 90 (Desktop) com CLS < 0.1 e TBT < 200ms.
+## Estilo obrigatório (reforço)
+- Minimalismo: grid 8px; seções 80–120px; máx. 3 elementos-chave/área; tipografia Inter limpa 
+  clara (lh ≥ 1.6); um acento discreto; microinterações leves.
+- Glass controlado: alpha ~6–8%, `backdrop-filter: blur(8–12px)`, borda 1px sutil; sem glass em listas/cards/tabelas/bg global.
 
 ## Não fazer
+- Introduzir bibliotecas pesadas sem necessidade.
+- Criar tokens fora dos arquivos definidos; usar sombras fortes/gradientes chamativos.
 
-- Não aplicar glass em cards, listas, tabelas ou backgrounds de página inteira.
-- Não usar sombras fortes, gradientes chamativos, ou múltiplas camadas de blur.
-- Não criar tokens fora de abstracts/tokens.scss ou shared/constants/design-tokens.ts.
-- Não usar/atribuir a classe .glass-card em nenhum componente até nova instrução.
+## Entregáveis
+- Diffs por arquivo e justificativas curtas.
+- Lista de comandos executados (ng generate etc.).
+- Relatório rápido: contraste, Lighthouse, responsividade e cobertura dos critérios.
 
-## Perguntas que deve fazer se necessário
-
-- Qual paleta aprovada? Manter logo/brand atual?
-- Densidade do layout (confortável vs compacto)?
-- Dark, Light ou ambos? (Se ambos, me traga mapeamento de tokens por tema.)
-
-## Prompts de iteração (rápidos)
-
-- "Aprovo a paleta 2. Aplique nos tokens e ajuste buttons/cards/forms. Depois mostre diffs."
-- "Execute o sweep anti-hardcode e me mostre a lista de ocorrências substituídas."
-- "Aplique o glass apenas no Topbar; confirme que .glass-card está criada mas sem uso (traga grep)."
-- "Verifique contraste AA de hover/focus de botões e links nos dois temas; ajuste se necessário."
+## Prompts rápidos
+- "Crie o layout base (sidebar + topbar glass), rotas raiz e tokens/ThemeService (paleta P2). Mostre diffs."
+- "Gere as páginas mockadas de Upload, Editor, Subtitles, Preview & Export e Dashboard com ApiMockService."
+- "Valide AA e Lighthouse; liste ajustes realizados e antes/depois."
