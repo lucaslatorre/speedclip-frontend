@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="$PROJECT_DIR$/speedclip-web/src/app/core/services/theme.service.ts">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/speedclip-web/src/app/core/services/theme.service.ts" />
+              <option name="updatedContent" value="import { Injectable } from '@angular/core';&#10;import { BehaviorSubject } from 'rxjs';&#10;import { ThemeName } from '../../shared/constants/design-tokens';&#10;&#10;const STORAGE_KEY = 'sc_theme';&#10;&#10;@Injectable({ providedIn: 'root' })&#10;export class ThemeService {&#10;  private readonly prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)');&#10;  private currentTheme: ThemeName = 'light';&#10;  readonly theme$ = new BehaviorSubject&lt;ThemeName&gt;('light');&#10;&#10;  constructor() {&#10;    this.init();&#10;  }&#10;&#10;  private init() {&#10;    const saved = (localStorage.getItem(STORAGE_KEY) as ThemeName | null);&#10;    const os: ThemeName = this.prefersDark?.matches ? 'dark' : 'light';&#10;    this.setTheme(saved ?? os, false);&#10;&#10;    if (this.prefersDark) {&#10;      this.prefersDark.addEventListener('change', (e) =&gt; {&#10;        const savedExplicit = localStorage.getItem(STORAGE_KEY);&#10;        if (!savedExplicit) {&#10;          this.setTheme(e.matches ? 'dark' : 'light');&#10;        }&#10;      });&#10;    }&#10;  }&#10;&#10;  get theme(): ThemeName { return this.currentTheme; }&#10;&#10;  setTheme(theme: ThemeName, persist: boolean = true) {&#10;    this.currentTheme = theme;&#10;    document.documentElement.setAttribute('data-theme', theme);&#10;    document.documentElement.style.colorScheme = theme;&#10;    if (persist) localStorage.setItem(STORAGE_KEY, theme);&#10;    this.theme$.next(theme);&#10;  }&#10;&#10;  toggle() {&#10;    this.setTheme(this.currentTheme === 'light' ? 'dark' : 'light');&#10;  }&#10;}&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/speedclip-web/src/app/shared/components/not-found.component.ts">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/speedclip-web/src/app/shared/components/not-found.component.ts" />
+              <option name="updatedContent" value="import { ChangeDetectionStrategy, Component } from '@angular/core';&#10;import { RouterModule } from '@angular/router';&#10;&#10;@Component({&#10;  selector: 'sc-not-found',&#10;  standalone: true,&#10;  imports: [RouterModule],&#10;  template: `&#10;    &lt;section class=&quot;container&quot; aria-labelledby=&quot;nf-title&quot;&gt;&#10;      &lt;h1 id=&quot;nf-title&quot;&gt;Página não encontrada&lt;/h1&gt;&#10;      &lt;p class=&quot;muted&quot;&gt;Verifique a URL ou volte para a Dashboard.&lt;/p&gt;&#10;      &lt;p&gt;&lt;a routerLink=&quot;/&quot;&gt;Ir para Dashboard&lt;/a&gt;&lt;/p&gt;&#10;    &lt;/section&gt;&#10;  `,&#10;  styles: [&#10;    `:host{display:block} .muted{color:var(--color-text-muted)} section{padding-block:var(--spacing-32)}`&#10;  ],&#10;  changeDetection: ChangeDetectionStrategy.OnPush,&#10;})&#10;export class NotFoundComponent {}&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/speedclip-web/src/app/shared/constants/design-tokens.ts">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/speedclip-web/src/app/shared/constants/design-tokens.ts" />
+              <option name="updatedContent" value="// Design tokens de TS para uso em componentes/serviços&#10;export type ThemeName = 'light' | 'dark';&#10;&#10;export const DESIGN_TOKENS = Object.freeze({&#10;  cssVars: {&#10;    bg: '--color-bg',&#10;    surface: '--color-surface',&#10;    text: '--color-text',&#10;    textMuted: '--color-text-muted',&#10;    primary: '--color-primary',&#10;    accent: '--color-accent',&#10;    success: '--color-success',&#10;    warn: '--color-warn',&#10;    error: '--color-error',&#10;    glassBg: '--glass-bg',&#10;    glassBlur: '--glass-blur',&#10;    glassBorder: '--glass-border',&#10;&#10;    containerMax: '--container-max',&#10;    topbarH: '--topbar-h',&#10;    sidebarW: '--sidebar-w',&#10;    sidebarWCollapsed: '--sidebar-w-collapsed',&#10;  },&#10;} as const);&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/speedclip-web/src/index.html">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/speedclip-web/src/index.html" />
+              <option name="originalContent" value="&lt;!doctype html&gt;&#10;&lt;html lang=&quot;pt-BR&quot; data-theme=&quot;light&quot;&gt;&#10;&lt;head&gt;&#10;  &lt;meta charset=&quot;utf-8&quot;&gt;&#10;  &lt;title&gt;SpeedClip&lt;/title&gt;&#10;  &lt;base href=&quot;/&quot;&gt;&#10;  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;&#10;  &lt;link rel=&quot;icon&quot; type=&quot;image/x-icon&quot; href=&quot;favicon.ico&quot;&gt;&#10;  &lt;!-- Tipografia Inter --&gt;&#10;  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;&#10;  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;&#10;  &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;&#10;  &lt;script&gt;&#10;    (function() {&#10;      try {&#10;        var saved = localStorage.getItem('sc_theme');&#10;        var theme = saved || (window.matchMedia &amp;&amp; window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');&#10;        document.documentElement.setAttribute('data-theme', theme);&#10;        document.documentElement.style.colorScheme = theme;&#10;      } catch (e) {}&#10;    })();&#10;  &lt;/script&gt;&#10;  &lt;style&gt;&#10;    /* CSS crítico para evitar flash de tema */&#10;    html, body { height: 100%; }&#10;    body { margin: 0; background: #f7f8fa; color: #0f141a; }&#10;    html[data-theme='dark'] body { background: #0b0f14; color: #e6e9ee; }&#10;  &lt;/style&gt;&#10;&lt;/head&gt;&#10;&lt;body&gt;&#10;  &lt;app-root&gt;&lt;/app-root&gt;&#10;&lt;/body&gt;&#10;&lt;/html&gt;&#10;" />
+              <option name="updatedContent" value="&lt;!doctype html&gt;&#10;&lt;html lang=&quot;pt-BR&quot; data-theme=&quot;light&quot;&gt;&#10;&lt;head&gt;&#10;  &lt;meta charset=&quot;utf-8&quot;&gt;&#10;  &lt;title&gt;SpeedClip&lt;/title&gt;&#10;  &lt;base href=&quot;/&quot;&gt;&#10;  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;&#10;  &lt;link rel=&quot;icon&quot; type=&quot;image/x-icon&quot; href=&quot;/favicon.ico&quot;&gt;&#10;  &lt;!-- Tipografia Inter --&gt;&#10;  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;&#10;  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;&#10;  &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;&#10;  &lt;script&gt;&#10;    (function() {&#10;      try {&#10;        var saved = localStorage.getItem('sc_theme');&#10;        var theme = saved || (window.matchMedia &amp;&amp; window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');&#10;        document.documentElement.setAttribute('data-theme', theme);&#10;        document.documentElement.style.colorScheme = theme;&#10;      } catch (e) {}&#10;    })();&#10;  &lt;/script&gt;&#10;  &lt;style&gt;&#10;    /* CSS crítico para evitar flash de tema */&#10;    html, body { height: 100%; }&#10;    body { margin: 0; background: #f7f8fa; color: #0f141a; }&#10;    html[data-theme='dark'] body { background: #0b0f14; color: #e6e9ee; }&#10;  &lt;/style&gt;&#10;&lt;/head&gt;&#10;&lt;body&gt;&#10;  &lt;app-root&gt;&lt;/app-root&gt;&#10;&lt;/body&gt;&#10;&lt;/html&gt;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/speedclip-web/src/styles/abstracts/variables.scss">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/speedclip-web/src/styles/abstracts/variables.scss" />
+              <option name="updatedContent" value="/* Variables helpers (breakpoints, sizes) */&#10;:root {&#10;  /* Breakpoints */&#10;  --bp-sm: 320px;&#10;  --bp-md: 768px;&#10;  --bp-lg: 1024px;&#10;  --bp-xl: 1200px;&#10;}&#10;&#10;/* Density variants (roomy default) */&#10;:root {&#10;  --density: roomy; /* roomy | comfortable | compact */&#10;}&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/speedclip-web/src/styles/components/cards.scss">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/speedclip-web/src/styles/components/cards.scss" />
+              <option name="originalContent" value="&#10;" />
+              <option name="updatedContent" value="/* Glass card (defined but not used) */&#10;@use '../mixins' as mix;&#10;&#10;.glass-card {&#10;  @include mix.glass-surface;&#10;  border-radius: var(--radius-lg);&#10;  padding: var(--spacing-24);&#10;}" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/speedclip-web/src/styles/mixins.scss">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/speedclip-web/src/styles/mixins.scss" />
+              <option name="updatedContent" value="/* Mixins utilitários */&#10;@mixin glass-surface {&#10;  background: var(--glass-bg);&#10;  backdrop-filter: blur(var(--glass-blur));&#10;  -webkit-backdrop-filter: blur(var(--glass-blur));&#10;  border: 1px solid var(--glass-border);&#10;}&#10;&#10;@mixin focus-ring {&#10;  outline: 2px solid var(--color-accent);&#10;  outline-offset: 2px;&#10;}&#10;&#10;/* Hairline divider */&#10;@mixin divider-x {&#10;  border-top: 1px solid var(--divider-color);&#10;}&#10;&#10;@mixin divider-y {&#10;  border-left: 1px solid var(--divider-color);&#10;}&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

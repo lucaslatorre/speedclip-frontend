@@ -1,0 +1,21 @@
+<section aria-labelledby="subs-title" class="container">
+    <h1 id="subs-title">Legendas</h1>
+    <p class="muted">Lista editável (mock). Para gerar, use o botão abaixo.</p>
+
+    <div class="actions">
+        <sc-button (clicked)="generate()" variant="outline">Gerar via Whisper (mock)</sc-button>
+    </div>
+
+    <ul *ngIf="(subs$|async) as subs; else loading" class="table">
+        <li class="row head">
+            <span>Início</span><span>Fim</span><span>Texto</span><span>Preset</span></li>
+        <li *ngFor="let s of subs" class="row">
+            <span>{{ s.start }}s</span>
+            <span>{{ s.end }}s</span>
+            <span class="text">{{ s.text }}</span>
+            <span class="preset">{{ s.preset }}</span>
+        </li>
+    </ul>
+    <ng-template #loading><p class="muted">Carregando…</p></ng-template>
+</section>
+

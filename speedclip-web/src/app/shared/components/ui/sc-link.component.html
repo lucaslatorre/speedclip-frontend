@@ -1,0 +1,11 @@
+<ng-container *ngIf="routerLink; else ext">
+    <a [routerLink]="routerLink" class="sc-link">
+        <ng-content></ng-content>
+    </a>
+</ng-container>
+<ng-template #ext>
+    <a *ngIf="href" [attr.rel]="rel" [attr.target]="target" [href]="href" class="sc-link">
+        <ng-content></ng-content>
+    </a>
+</ng-template>
+

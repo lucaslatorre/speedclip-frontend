@@ -1,0 +1,11 @@
+<button
+  class="sc-btn {{variant}} {{size}}"
+  type="button"
+  [disabled]="disabled || loading"
+  [attr.aria-busy]="loading ? 'true' : null"
+  (click)="clicked.emit($event)"
+>
+  <span class="spinner" *ngIf="loading" aria-hidden="true"></span>
+  <span class="label"><ng-content></ng-content></span>
+</button>
+

@@ -1,0 +1,13 @@
+<section aria-labelledby="fg-title" class="container auth">
+    <h1 id="fg-title">Recuperar senha</h1>
+    <form (ngSubmit)="submit()" [formGroup]="form" class="form">
+        <sc-input [error]="form.controls.email.touched && form.controls.email.invalid ? 'Email inválido' : ''" formControlName="email" label="Email"
+                  placeholder="voce@exemplo.com"></sc-input>
+        <div class="actions">
+            <sc-button [loading]="loading" variant="filled">Enviar link</sc-button>
+            <a class="muted" routerLink="/auth/login">Voltar ao login</a>
+        </div>
+    </form>
+    <p *ngIf="sent" class="success">Se existir conta, enviaremos um link para o seu email.</p>
+</section>
+

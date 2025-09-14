@@ -1,0 +1,23 @@
+<section aria-labelledby="ed-title" class="container">
+    <h1 id="ed-title">Editor</h1>
+    <p class="muted">Timeline placeholder e cortes (mock).</p>
+
+    <div class="timeline">Timeline / Waveform (placeholder)</div>
+
+    <div class="actions">
+        <sc-button (clicked)="create()" variant="outline">Novo corte</sc-button>
+    </div>
+
+    <ul *ngIf="(cuts$|async) as cuts; else loading" class="cuts">
+        <li *ngFor="let c of cuts" class="chip">
+            <strong>{{ c.title }}</strong>
+            <span class="range">{{ c.start }}s – {{ c.end }}s</span>
+            <div class="chip-actions">
+                <button (click)="duplicate(c.id)" class="ghost">Duplicar</button>
+                <button (click)="remove(c.id)" class="ghost">Remover</button>
+            </div>
+        </li>
+    </ul>
+    <ng-template #loading><p class="muted">Carregando…</p></ng-template>
+</section>
+

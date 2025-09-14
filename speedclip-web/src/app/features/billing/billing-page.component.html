@@ -1,0 +1,17 @@
+<section aria-labelledby="bill-title" class="container">
+    <h1 id="bill-title">Plano</h1>
+    <p class="muted">Gerencie seu plano (mock).</p>
+
+    <div *ngIf="(plan$|async) as plan" class="card">
+        <div class="row"><strong>Atual:</strong> <span
+                class="tag">{{ plan.tier | uppercase }}</span></div>
+        <div class="row"><strong>Minutos usados:</strong> {{ plan.minutesUsed }}
+            / {{ plan.minutesLimit }}
+        </div>
+        <div class="actions">
+            <sc-button (clicked)="set('free')" variant="outline">Free</sc-button>
+            <sc-button (clicked)="set('pro')" variant="filled">Pro</sc-button>
+        </div>
+    </div>
+</section>
+

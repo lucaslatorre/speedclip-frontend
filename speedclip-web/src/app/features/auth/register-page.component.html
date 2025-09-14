@@ -1,0 +1,16 @@
+<section aria-labelledby="reg-title" class="container auth">
+    <h1 id="reg-title">Cadastrar</h1>
+    <form (ngSubmit)="submit()" [formGroup]="form" class="form">
+        <sc-input [error]="form.controls.name.touched && form.controls.name.invalid ? 'Informe seu nome' : ''" formControlName="name"
+                  label="Nome"></sc-input>
+        <sc-input [error]="form.controls.email.touched && form.controls.email.invalid ? 'Email inválido' : ''" formControlName="email" label="Email"
+                  placeholder="voce@exemplo.com"></sc-input>
+        <sc-input [error]="form.controls.password.touched && form.controls.password.invalid ? 'Mínimo 6 caracteres' : ''" formControlName="password" label="Senha"
+                  type="password"></sc-input>
+        <div class="actions">
+            <sc-button [loading]="loading" variant="filled">Criar conta</sc-button>
+            <a class="muted" routerLink="/auth/login">Já tenho conta</a>
+        </div>
+    </form>
+</section>
+

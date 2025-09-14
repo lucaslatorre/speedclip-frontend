@@ -1,0 +1,7 @@
+<div [attr.role]="role" [class.error]="kind==='error'" [class.info]="kind==='info'"
+     [class.success]="kind==='success'" [class.warn]="kind==='warn'" class="sc-status">
+    <span aria-hidden="true" class="dot"></span>
+    <span class="msg">{{ message }}
+        <ng-content></ng-content></span>
+</div>
+

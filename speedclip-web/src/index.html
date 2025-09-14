@@ -1,11 +1,31 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR" data-theme="light">
 <head>
   <meta charset="utf-8">
-  <title>SpeedclipWeb</title>
+  <title>SpeedClip</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!-- Tipografia Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    (function() {
+      try {
+        var saved = localStorage.getItem('sc_theme');
+        var theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+        document.documentElement.style.colorScheme = theme;
+      } catch (e) {}
+    })();
+  </script>
+  <style>
+    /* CSS crítico para evitar flash de tema */
+    html, body { height: 100%; }
+    body { margin: 0; background: #f7f8fa; color: #0f141a; }
+    html[data-theme='dark'] body { background: #0b0f14; color: #e6e9ee; }
+  </style>
 </head>
 <body>
   <app-root></app-root>

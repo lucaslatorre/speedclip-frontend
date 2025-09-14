@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Global styles imports */
+@use './styles/abstracts/variables';
+@use './styles/abstracts/tokens';
+@use './styles/mixins';
+@use './styles/base/typography';
+@use './styles/components/cards';
+@use './styles/components/forms';
+
+/* Layout helpers */
+.container {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: clamp(var(--spacing-24), 4vw, var(--spacing-48));
+}

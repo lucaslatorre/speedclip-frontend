@@ -1,0 +1,47 @@
+:host {
+    display: block
+}
+
+section {
+    padding-block: var(--spacing-32);
+}
+
+.muted {
+    color: var(--color-text-muted);
+}
+
+.actions {
+    margin-bottom: 12px;
+}
+
+.table {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 8px;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 80px 80px 1fr 120px;
+    gap: 12px;
+    align-items: center;
+    padding: 10px 12px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--divider-color);
+    background: var(--color-surface);
+}
+
+.row.head {
+    color: var(--color-text-muted);
+    background: transparent;
+    border-style: dashed;
+}
+
+.text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+

@@ -1,0 +1,71 @@
+:host {
+    display: block
+}
+
+section {
+    padding-block: var(--spacing-32);
+}
+
+.muted {
+    color: var(--color-text-muted);
+}
+
+.controls {
+    display: flex;
+    gap: 12px;
+    align-items: flex-end;
+    margin: 12px 0;
+}
+
+.controls select {
+    min-height: 40px;
+    padding: 6px 10px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--divider-color);
+    background: var(--color-surface);
+    color: var(--color-text);
+}
+
+.preview {
+    height: 160px;
+    border-radius: var(--radius-md);
+    border: 1px dashed var(--divider-color);
+    background: var(--color-surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-muted);
+    margin: 12px 0 16px;
+}
+
+.jobs {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 8px;
+}
+
+.job {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--divider-color);
+    background: var(--color-surface);
+}
+
+.status.processing {
+    color: var(--color-warn);
+}
+
+.status.done {
+    color: var(--color-success);
+}
+
+.status.error {
+    color: var(--color-error);
+}
+

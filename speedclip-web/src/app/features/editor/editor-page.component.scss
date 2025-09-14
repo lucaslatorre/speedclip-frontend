@@ -1,0 +1,64 @@
+:host {
+    display: block
+}
+
+section {
+    padding-block: var(--spacing-32);
+}
+
+.muted {
+    color: var(--color-text-muted);
+}
+
+.timeline {
+    height: 80px;
+    border-radius: var(--radius-md);
+    border: 1px dashed var(--divider-color);
+    background: var(--color-surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-muted);
+    margin: 12px 0 16px;
+}
+
+.actions {
+    margin-bottom: 8px;
+}
+
+.cuts {
+    list-style: none;
+    display: grid;
+    gap: 8px;
+    padding: 0;
+}
+
+.chip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px 12px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--divider-color);
+    background: var(--color-surface);
+}
+
+.range {
+    color: var(--color-text-muted);
+}
+
+.chip-actions .ghost {
+    height: 32px;
+    padding: 0 10px;
+    border-radius: 8px;
+    border: 1px solid var(--divider-color);
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+}
+
+.chip-actions .ghost:hover {
+    background: color-mix(in srgb, var(--color-text) 4%, transparent);
+}
+

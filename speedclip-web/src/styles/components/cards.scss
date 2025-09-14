@@ -1,0 +1,8 @@
+/* Glass card (defined but not used) */
+@use '../mixins' as mix;
+
+.glass-card {
+  @include mix.glass-surface;
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-24);
+}

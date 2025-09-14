@@ -1,0 +1,72 @@
+<div [class.collapsed]="collapsed()" class="shell">
+    <!-- Sidebar (solid surface, no glass) -->
+    <aside aria-label="Primary" class="sidebar">
+        <div class="brand">
+            <button (click)="toggleSidebar()" aria-label="Alternar sidebar" class="collapse-btn"
+                    title="Alternar sidebar">
+                <span aria-hidden="true">☰</span>
+            </button>
+            <a aria-label="SpeedClip Home" class="logo" routerLink="/">
+                <span class="dot"></span>
+                <span aria-hidden="false" class="name">SpeedClip</span>
+            </a>
+        </div>
+
+        <nav class="nav">
+            <div aria-label="Workspace" class="group">
+                <div class="group-label">Workspace</div>
+                <a class="item" routerLink="/" routerLinkActive="active">
+                    <span aria-hidden="true" class="icon">🏠</span>
+                    <span class="label">Dashboard</span>
+                </a>
+                <a aria-label="Upload" class="item" routerLink="/upload">
+                    <span aria-hidden="true" class="icon">⬆️</span>
+                    <span class="label">Upload</span>
+                </a>
+            </div>
+
+            <div aria-label="Acquisition" class="group">
+                <div class="group-label">Acquisition</div>
+                <a class="item" href="#"><span class="icon">✉️</span><span class="label">Email Campaigns</span></a>
+                <a class="item" href="#"><span class="icon">🧮</span><span class="label">Pricing calculator</span></a>
+                <a class="item" href="#"><span class="icon">📞</span><span class="label">Call analyzer</span></a>
+            </div>
+
+            <div aria-label="Resources" class="group">
+                <div class="group-label">Resources</div>
+                <a class="item" href="#"><span class="icon">🏷️</span><span class="label">Top 50 niches</span></a>
+                <a class="item" href="#"><span class="icon">⚙️</span><span
+                        class="label">AI tools</span></a>
+                <a class="item" href="#"><span class="icon">🔗</span><span class="label">n8n workflows</span></a>
+                <a class="item" href="#"><span class="icon">📄</span><span
+                        class="label">Prompts</span></a>
+            </div>
+        </nav>
+    </aside>
+
+    <div class="content-col">
+        <header class="topbar" role="banner">
+            <div aria-label="Breadcrumbs" class="crumbs">
+                <ng-container *ngIf="bc.crumbs$ | async as crumbs">
+                    <ng-container *ngFor="let c of crumbs; let last = last">
+                        <a *ngIf="!last" [routerLink]="c.url" class="crumb">{{ c.label }}</a>
+                        <span *ngIf="last" aria-current="page"
+                              class="crumb current">{{ c.label }}</span>
+                        <span *ngIf="!last" aria-hidden="true" class="sep">›</span>
+                    </ng-container>
+                </ng-container>
+            </div>
+            <div class="actions">
+                <button (click)="theme.toggle()" aria-label="Alternar tema" class="ghost"
+                        title="Tema">
+                    <span aria-hidden="true">🌓</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Routed content -->
+        <main class="page" role="main">
+            <router-outlet/>
+        </main>
+    </div>
+</div>

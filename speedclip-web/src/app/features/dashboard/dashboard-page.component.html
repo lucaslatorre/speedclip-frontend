@@ -1,0 +1,36 @@
+<section aria-labelledby="dash-title" class="container">
+    <header class="head">
+        <h1 id="dash-title">Dashboard</h1>
+        <div class="actions">
+            <a routerLink="/upload">
+                <sc-button size="md" variant="filled">Novo Upload</sc-button>
+            </a>
+        </div>
+    </header>
+
+    <div *ngIf="(videos$|async) as videos; else loading" class="list">
+        <div *ngIf="!videos.length" class="empty">
+            <p class="muted">Nenhum vídeo ainda. Comece com um upload.</p>
+        </div>
+        <ul>
+            <li *ngFor="let v of videos" class="row">
+                <div class="col main">
+                    <div class="title">{{ v.title }}</div>
+                    <div class="meta">{{ v.duration / 60 | number:'1.0-0' }} min • {{ v.status }}
+                    </div>
+                </div>
+                <div class="col actions">
+                    <a [routerLink]="['/editor', v.id]" class="link">Editar</a>
+                    <span class="sep">•</span>
+                    <a [routerLink]="['/subtitles', v.id]" class="link">Legendas</a>
+                    <span class="sep">•</span>
+                    <a [routerLink]="['/preview-export', v.id]" class="link">Exportar</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <ng-template #loading>
+        <p class="muted">Carregando…</p>
+    </ng-template>
+</section>
+

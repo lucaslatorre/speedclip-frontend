@@ -1,0 +1,43 @@
+:host {
+    display: block
+}
+
+section {
+    padding-block: var(--spacing-32);
+}
+
+.muted {
+    color: var(--color-text-muted);
+}
+
+.card {
+    max-width: 520px;
+    display: grid;
+    gap: 12px;
+    padding: 16px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--divider-color);
+    background: var(--color-surface);
+}
+
+.row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+    color: var(--color-primary);
+    font-weight: 600;
+    font-size: .8rem;
+}
+
+.actions {
+    display: flex;
+    gap: 8px;
+}
+
