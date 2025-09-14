@@ -1,11 +1,43 @@
-<button
-  class="sc-btn {{variant}} {{size}}"
-  type="button"
-  [disabled]="disabled || loading"
-  [attr.aria-busy]="loading ? 'true' : null"
-  (click)="clicked.emit($event)"
->
-  <span class="spinner" *ngIf="loading" aria-hidden="true"></span>
-  <span class="label"><ng-content></ng-content></span>
-</button>
+<ng-container *ngIf="routerLink || href; else nativeBtn">
+  <a
+    *ngIf="routerLink; else ext"
+    class="sc-btn {{variant}} {{size}}"
+    [routerLink]="routerLink"
+    role="button"
+    [attr.aria-busy]="loading ? 'true' : null"
+    [attr.aria-disabled]="(disabled || loading) ? 'true' : null"
+    [tabIndex]="(disabled || loading) ? -1 : 0"
+  >
+    <span class="spinner" *ngIf="loading" aria-hidden="true"></span>
+    <span class="label"><ng-content></ng-content></span>
+  </a>
+  <ng-template #ext>
+    <a
+      class="sc-btn {{variant}} {{size}}"
+      [href]="href"
+      [attr.target]="target"
+      [attr.rel]="rel"
+      role="button"
+      [attr.aria-busy]="loading ? 'true' : null"
+      [attr.aria-disabled]="(disabled || loading) ? 'true' : null"
+      [tabIndex]="(disabled || loading) ? -1 : 0"
+    >
+      <span class="spinner" *ngIf="loading" aria-hidden="true"></span>
+      <span class="label"><ng-content></ng-content></span>
+    </a>
+  </ng-template>
+</ng-container>
+
+<ng-template #nativeBtn>
+  <button
+    class="sc-btn {{variant}} {{size}}"
+    type="button"
+    [disabled]="disabled || loading"
+    [attr.aria-busy]="loading ? 'true' : null"
+    (click)="clicked.emit($event)"
+  >
+    <span class="spinner" *ngIf="loading" aria-hidden="true"></span>
+    <span class="label"><ng-content></ng-content></span>
+  </button>
+</ng-template>
 
