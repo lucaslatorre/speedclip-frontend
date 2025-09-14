@@ -126,7 +126,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 clamp(var(--spacing-24), 4vw, var(--spacing-48));
-    @include mix.glass-surface;
+    @include mix.glass-surface();
     background: var(--glass-bg);
 }
 

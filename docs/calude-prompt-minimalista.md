@@ -33,6 +33,7 @@ base, com acessibilidade e performance AA/90+ no Lighthouse.
     - Tipografia com hierarquia clara e limpa (Inter); line-height ≥ 1.6.
     - Paleta neutra/sóbria + 1 acento discreto.
     - Microinterações discretas; foco no conteúdo.
+    - Ícones "lucide-angular (nao usar emoji)
 - Glass (controlado):
     - background com alpha baixo (≈ 6–8%), ex.: rgba(255,255,255,0.06) no tema dark.
     - backdrop-filter: blur 8–12px; saturate leve.
