@@ -30,7 +30,7 @@ base, com acessibilidade e performance AA/90+ no Lighthouse.
 - Minimalismo:
     - Espaço em branco generoso (grid base 8px; seções 80–120px).
     - Máx. 3 elementos-chave por seção.
-    - Tipografia com hierarquia clara; line-height ≥ 1.6.
+    - Tipografia com hierarquia clara e limpa (Inter); line-height ≥ 1.6.
     - Paleta neutra/sóbria + 1 acento discreto.
     - Microinterações discretas; foco no conteúdo.
 - Glass (controlado):
@@ -46,6 +46,8 @@ base, com acessibilidade e performance AA/90+ no Lighthouse.
 - Fallback se não houver resposta:
     - Dark: bg #0B0D0F, surface #121417, text #EAECEF, muted #9AA3AF, accent #5B8DEF.
     - Light: bg #F7F7F8, surface #FFFFFF, text #1B1F24, muted #6B7280, accent #2563EB.
+    - Manter confortável
+    - Manter Dark e Light trazendo mapeamento de tokens por tema.
 
 ## Referências visuais (inspiração, não cópia)
 
