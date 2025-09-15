@@ -1,4 +1,4 @@
-/* SpeedClip Tokens (P2: neutra + ciano) */
+/* SpeedClip Tokens (P2: neutra + azul apenas em accent) */
 /* Escopo: somente CSS vars, sem hardcode em componentes. */
 
 :root {
@@ -40,6 +40,7 @@
     --glass-bg: rgba(255, 255, 255, 0.07);
     --glass-blur: 10px;
     --glass-border: rgba(0, 0, 0, 0.12);
+    --glass-shadow: none;
 }
 
 :root[data-theme='light'] {
@@ -47,16 +48,30 @@
     --color-surface: #ffffff;
     --color-text: #0f141a;
     --color-text-muted: rgba(15, 20, 26, 0.55);
-    --color-primary: #0ea5e9; /* cyan 500 */
-    --color-primary-strong: #0284c7; /* darker cyan for AA */
-    --color-accent: #06b6d4;
+
+    /* Primário neutro escuro para elementos (botões, etc.) */
+    --color-primary: #1b1f24; /* graphite 900 */
+    --color-primary-strong: #14181c; /* ainda mais escuro para estados */
+    --on-primary: #ffffff; /* texto em botões escuros */
+
+    /* Azul restrito a acentos somente */
+    --color-accent: #2563eb; /* accent azul discreto */
+
+    --color-success: #16a34a;
     --color-warn: #f59e0b;
     --color-error: #ef4444;
-    --on-primary: #ffffff;
-    --color-link: var(--color-primary-strong);
+
+    /* Links e breadcrumbs em neutro, não azul */
+    --color-link: var(--color-text);
 
     --divider-color: color-mix(in srgb, var(--color-text) 10%, transparent);
 
+    /* Botões (neutros escuros) */
+    --btn-bg: var(--color-primary);
+    --btn-text: var(--on-primary);
+    --btn-border: color-mix(in srgb, var(--color-primary) 85%, transparent);
+
+    /* Glass leve para topbar */
     --glass-bg: rgba(255, 255, 255, 0.06); /* alpha 6% */
     --glass-border: color-mix(in srgb, var(--color-text) 12%, transparent);
 }
@@ -66,17 +81,30 @@
     --color-surface: #11161c;
     --color-text: #e6e9ee;
     --color-text-muted: rgba(230, 233, 238, 0.65);
-    --color-primary: #38bdf8; /* cyan 400 */
-    --color-primary-strong: #22a3dd;
-    --color-accent: #22d3ee;
+
+    /* Primário neutro escuro (um pouco acima da surface) */
+    --color-primary: #1c222b; /* graphite 800 */
+    --color-primary-strong: #171c23; /* mais escuro para active */
+    --on-primary: #eaecef;
+
+    /* Azul apenas para acentos visuais (focus, chips eventuais) */
+    --color-accent: #5b8def;
+
     --color-success: #22c55e;
     --color-warn: #f59e0b;
     --color-error: #f87171;
-    --glass-border: 1px solid color-mix(in srgb, var(--color-text) 12%, transparent);
-    --color-link: var(--color-primary);
+
+    /* Links/breadcrumbs neutros */
+    --color-link: var(--color-text);
 
     --divider-color: color-mix(in srgb, var(--color-text) 14%, transparent);
 
-    --glass-bg: rgba(17, 22, 28, 0.08); /* alpha 8% */
-}
+    /* Botões (neutros escuros com texto claro) */
+    --btn-bg: var(--color-primary);
+    --btn-text: var(--on-primary);
+    --btn-border: color-mix(in srgb, var(--color-primary) 75%, transparent);
 
+    /* Glass sutil no topbar (sem "1px solid" no token) */
+    --glass-bg: rgba(17, 22, 28, 0.08); /* alpha 8% */
+    --glass-border: color-mix(in srgb, var(--color-text) 12%, transparent);
+}
