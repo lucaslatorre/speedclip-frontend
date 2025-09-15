@@ -35,12 +35,12 @@
 
 /* Variants */
 .sc-btn.filled {
-  background: var(--color-primary);
-  color: var(--on-primary, #fff);
-  border-color: color-mix(in srgb, var(--color-primary) 30%, transparent);
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  border-color: var(--btn-border);
 }
-.sc-btn.filled:hover { background: color-mix(in srgb, var(--color-primary) 90%, var(--color-text) 6%); }
-.sc-btn.filled:active { background: color-mix(in srgb, var(--color-primary) 84%, var(--color-text) 10%); }
+.sc-btn.filled:hover { background: color-mix(in srgb, var(--btn-bg) 92%, var(--color-text) 8%); }
+.sc-btn.filled:active { background: color-mix(in srgb, var(--btn-bg) 88%, var(--color-text) 12%); }
 
 .sc-btn.outline {
   border-color: var(--divider-color);
@@ -63,7 +63,7 @@
   outline-offset: 2px;
 }
 
-/* Loading/disabled states for both <button> and <a role="button"> */
+/* Loading/disabled */
 .sc-btn[aria-busy="true"],
 .sc-btn[aria-disabled="true"],
 .sc-btn:disabled {

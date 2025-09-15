@@ -50,7 +50,6 @@
     --color-primary: #0ea5e9; /* cyan 500 */
     --color-primary-strong: #0284c7; /* darker cyan for AA */
     --color-accent: #06b6d4;
-    --glass-border: 1px solid rgba(0, 0, 0, 0.12);
     --color-warn: #f59e0b;
     --color-error: #ef4444;
     --on-primary: #ffffff;
@@ -79,5 +78,5 @@
     --divider-color: color-mix(in srgb, var(--color-text) 14%, transparent);
 
     --glass-bg: rgba(17, 22, 28, 0.08); /* alpha 8% */
-    --glass-border: color-mix(in srgb, var(--color-text) 14%, transparent);
 }
+
