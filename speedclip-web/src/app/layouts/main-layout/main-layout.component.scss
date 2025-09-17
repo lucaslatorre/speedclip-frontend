@@ -84,15 +84,18 @@
     height: 44px;
     padding: 0 var(--spacing-12);
     border-radius: var(--radius-md);
-    color: inherit;
+    //color: inherit;
+    color: var(--color-text-muted);
 }
 
 .item:hover {
     background: color-mix(in srgb, var(--color-text) 4%, transparent);
+    color: var(--color-text);
     text-decoration: none;
 }
 
 .item.active {
+    color: var(--color-text);
     background: color-mix(in srgb, var(--color-text) 6%, transparent);
 }
 

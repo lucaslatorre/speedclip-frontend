@@ -27,17 +27,32 @@
 
             <div aria-label="Acquisition" class="group">
                 <div class="group-label">Acquisition</div>
-                <a class="item" href="#"><lucide-icon name="Mail" size="18" aria-hidden="true"></lucide-icon><span class="label">Email Campaigns</span></a>
-                <a class="item" href="#"><lucide-icon name="Calculator" size="18" aria-hidden="true"></lucide-icon><span class="label">Pricing calculator</span></a>
-                <a class="item" href="#"><lucide-icon name="Phone" size="18" aria-hidden="true"></lucide-icon><span class="label">Call analyzer</span></a>
+                <a class="item" href="#">
+                    <lucide-icon name="Mail" size="18" aria-hidden="true"></lucide-icon>
+                    <span class="label">Email Campaigns</span></a>
+                <a class="item" href="#">
+                    <lucide-icon name="Calculator" size="18" aria-hidden="true"></lucide-icon>
+                    <span class="label">Pricing calculator</span></a>
+
+                <a class="item" href="#">
+                    <lucide-icon name="Phone" size="18" aria-hidden="true"></lucide-icon>
+                    <span class="label">Call analyzer</span></a>
             </div>
 
             <div aria-label="Resources" class="group">
                 <div class="group-label">Resources</div>
-                <a class="item" href="#"><lucide-icon name="Tags" size="18" aria-hidden="true"></lucide-icon><span class="label">Top 50 niches</span></a>
-                <a class="item" href="#"><lucide-icon name="Cog" size="18" aria-hidden="true"></lucide-icon><span class="label">AI tools</span></a>
-                <a class="item" href="#"><lucide-icon name="Link" size="18" aria-hidden="true"></lucide-icon><span class="label">n8n workflows</span></a>
-                <a class="item" href="#"><lucide-icon name="FileText" size="18" aria-hidden="true"></lucide-icon><span class="label">Prompts</span></a>
+                <a class="item" href="#">
+                    <lucide-icon name="Tags" size="18" aria-hidden="true"></lucide-icon>
+                    <span class="label">Top 50 niches</span></a>
+                <a class="item" href="#">
+                    <lucide-icon name="Cog" size="18" aria-hidden="true"></lucide-icon>
+                    <span class="label">AI tools</span></a>
+                <a class="item" href="#">
+                    <lucide-icon name="Link" size="18" aria-hidden="true"></lucide-icon>
+                    <span class="label">n8n workflows</span></a>
+                <a class="item" href="#">
+                    <lucide-icon name="FileText" size="18" aria-hidden="true"></lucide-icon>
+                    <span class="label">Prompts</span></a>
             </div>
         </nav>
     </aside>
@@ -58,7 +73,8 @@
                 <button (click)="theme.toggle()" aria-label="Alternar tema" class="ghost"
                         title="Tema">
                     <ng-container *ngIf="theme.theme$ | async as th; else themeIcon">
-                        <lucide-icon [name]="th === 'light' ? 'Moon' : 'Sun'" size="18" aria-hidden="true"></lucide-icon>
+                        <lucide-icon [name]="th === 'light' ? 'Moon' : 'Sun'" size="18"
+                                     aria-hidden="true"></lucide-icon>
                     </ng-container>
                     <ng-template #themeIcon>
                         <lucide-icon name="Sun" size="18" aria-hidden="true"></lucide-icon>
