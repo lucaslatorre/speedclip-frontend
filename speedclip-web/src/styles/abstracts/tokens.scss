@@ -18,6 +18,7 @@
     --radius-sm: 8px;
     --radius-md: 10px;
     --radius-lg: 12px;
+    --radius-xl: 16px;
 
     /* Spacing scale */
     --spacing-4: 4px;
@@ -39,23 +40,7 @@
     /* Glass defaults (overridden by theme) */
     --glass-bg: rgba(255, 255, 255, 0.07);
     --glass-blur: 10px;
-    --glass-border: rgba(0, 0, 0, 0.12);
     --glass-shadow: none;
-}
-
-:root[data-theme='light'] {
-    --color-bg: #f7f8fa;
-    --color-surface: #ffffff;
-    --color-text: #0f141a;
-    --color-text-muted: rgba(15, 20, 26, 0.55);
-
-    /* Primário neutro escuro para elementos (botões, etc.) */
-    --color-primary: #1b1f24; /* graphite 900 */
-    --color-primary-strong: #14181c; /* ainda mais escuro para estados */
-    --on-primary: #ffffff; /* texto em botões escuros */
-
-    /* Azul restrito a acentos somente */
-    --color-accent: #2563eb; /* accent azul discreto */
 
     --color-success: #16a34a;
     --color-warn: #f59e0b;
@@ -66,14 +51,20 @@
 
     --divider-color: color-mix(in srgb, var(--color-text) 10%, transparent);
 
-    /* Botões (neutros escuros) */
-    --btn-bg: var(--color-primary);
-    --btn-text: var(--on-primary);
-    --btn-border: color-mix(in srgb, var(--color-primary) 85%, transparent);
 
     /* Glass leve para topbar */
-    --glass-bg: rgba(255, 255, 255, 0.06); /* alpha 6% */
     --glass-border: color-mix(in srgb, var(--color-text) 12%, transparent);
+
+    /* Sistema de sombras */
+    --shadow-sm: 0px 2px 8px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0px 8px 24px rgba(0, 0, 0, 0.12);
+    --shadow-lg: 0px 12px 28px rgba(0, 0, 0, 0.16);
+
+    /* Atualização dos botões para tema claro */
+    --btn-bg: #1c222b; /* Fundo escuro para tema claro */
+    --btn-text: #ffffff; /* Texto branco */
+    --btn-border: color-mix(in srgb, #1c222b 95%, transparent);
+
 }
 
 :root[data-theme='dark'] {
@@ -99,12 +90,18 @@
 
     --divider-color: color-mix(in srgb, var(--color-text) 14%, transparent);
 
-    /* Botões (neutros escuros com texto claro) */
-    --btn-bg: var(--color-primary);
-    --btn-text: var(--on-primary);
-    --btn-border: color-mix(in srgb, var(--color-primary) 75%, transparent);
-
     /* Glass sutil no topbar (sem "1px solid" no token) */
     --glass-bg: rgba(17, 22, 28, 0.08); /* alpha 8% */
     --glass-border: color-mix(in srgb, var(--color-text) 12%, transparent);
+
+
+    /* Sistema de sombras para tema escuro */
+    --shadow-sm: 0px 2px 8px rgba(0, 0, 0, 0.12);
+    --shadow-md: 0px 8px 24px rgba(0, 0, 0, 0.2);
+    --shadow-lg: 0px 12px 28px rgba(0, 0, 0, 0.24);
+
+    /* Inversão para tema escuro */
+    --btn-bg: #ffffff; /* Fundo branco para tema escuro */
+    --btn-text: #0b0f14; /* Texto escuro */
+    --btn-border: color-mix(in srgb, #ffffff 95%, transparent);
 }

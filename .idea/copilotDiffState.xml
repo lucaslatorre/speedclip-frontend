@@ -19,14 +19,6 @@
             </PendingDiffInfo>
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/speedclip-web/src/styles/abstracts/variables.scss">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/speedclip-web/src/styles/abstracts/variables.scss" />
-              <option name="updatedContent" value="/* Variables helpers (breakpoints, sizes) */&#10;:root {&#10;  /* Breakpoints */&#10;  --bp-sm: 320px;&#10;  --bp-md: 768px;&#10;  --bp-lg: 1024px;&#10;  --bp-xl: 1200px;&#10;}&#10;&#10;/* Density variants (roomy default) */&#10;:root {&#10;  --density: roomy; /* roomy | comfortable | compact */&#10;}&#10;" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
       </map>
     </option>
   </component>

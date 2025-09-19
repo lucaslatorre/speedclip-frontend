@@ -1,19 +1,21 @@
 /* SpeedClip Button Styles (sc-button)
    Uses only CSS tokens; no hardcoded colors. */
 
+
 .sc-btn {
     --_h: 40px; /* default md */
     --_px: var(--spacing-16);
     --_gap: var(--spacing-8);
-    --_radius: var(--radius-md);
+    --_radius: var(--radius-xl, 16px); /* Raio maior para bordas mais arredondadas */
     --_fw: 600;
+    --_shadow: var(--shadow-md, 0px 8px 24px rgba(0, 0, 0, 0.12));
 
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: var(--_gap);
     height: var(--_h);
-    min-width: 40px;
+    min-width: 120px;
     padding-inline: var(--_px);
     border-radius: var(--_radius);
     border: 1px solid transparent;
@@ -25,68 +27,78 @@
     text-decoration: none;
     cursor: pointer;
     user-select: none;
-    transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast), opacity var(--transition-fast);
+    transition: all var(--transition-normal);
 }
+
 
 /* Sizes */
 .sc-btn.sm {
     --_h: 32px;
     --_px: var(--spacing-12);
     font-size: 0.9rem;
+    min-width: 100px;
 }
 
 .sc-btn.md {
-    --_h: 40px;
-    --_px: var(--spacing-16);
+    --_h: 46px; /* Altura aumentada */
+    --_px: var(--spacing-24);
     font-size: 0.95rem;
+    min-width: 150px;
 }
 
 .sc-btn.lg {
-    --_h: 48px;
-    --_px: var(--spacing-18, 18px);
-    font-size: 1rem;
+    --_h: 56px; /* Altura aumentada */
+    --_px: var(--spacing-32);
+    font-size: 1.05rem;
+    min-width: 180px;
 }
 
-/* Variants */
+/* Variante filled com gradiente e sombra */
 .sc-btn.filled {
-    background: var(--btn-bg);
+    background: linear-gradient(180deg,
+        color-mix(in srgb, var(--btn-bg) 90%, white) 0%,
+        var(--btn-bg) 100%);
     color: var(--btn-text);
     border-color: var(--btn-border);
+    box-shadow: var(--_shadow);
 }
 
 .sc-btn.filled:hover {
-    background: color-mix(in srgb, var(--btn-bg) 92%, var(--color-text) 8%);
+    box-shadow: var(--shadow-lg, 0px 12px 28px rgba(0, 0, 0, 0.16));
+    background: linear-gradient(180deg,
+        color-mix(in srgb, var(--btn-bg) 85%, white) 0%,
+        var(--btn-bg) 100%);
 }
+
 
 .sc-btn.filled:active {
-    background: color-mix(in srgb, var(--btn-bg) 88%, var(--color-text) 12%);
+    transform: translateY(1px);
+    box-shadow: var(--shadow-sm, 0px 2px 8px rgba(0, 0, 0, 0.12));
+    background: linear-gradient(180deg,
+        var(--btn-bg) 0%,
+        color-mix(in srgb, var(--btn-bg) 90%, black) 100%);
 }
 
+
+/* Variante outline atualizada */
 .sc-btn.outline {
-    border-color: var(--divider-color);
     background: transparent;
     color: var(--color-text);
+    border: 1px solid var(--divider-color);
+    box-shadow: var(--shadow-sm, 0px 2px 8px rgba(0, 0, 0, 0.04));
 }
 
 .sc-btn.outline:hover {
-    background: color-mix(in srgb, var(--color-text) 5%, transparent);
+    background: color-mix(in srgb, var(--color-text) 4%, transparent);
+    border-color: color-mix(in srgb, var(--color-text) 20%, transparent);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md, 0px 4px 16px rgba(0, 0, 0, 0.06));
 }
 
 .sc-btn.outline:active {
     background: color-mix(in srgb, var(--color-text) 8%, transparent);
-}
-
-.sc-btn.ghost {
-    border-color: transparent;
-    background: transparent;
-}
-
-.sc-btn.ghost:hover {
-    background: color-mix(in srgb, var(--color-text) 4%, transparent);
-}
-
-.sc-btn.ghost:active {
-    background: color-mix(in srgb, var(--color-text) 7%, transparent);
+    transform: translateY(1px);
+    box-shadow: var(--shadow-sm, 0px 1px 4px rgba(0, 0, 0, 0.04));
 }
 
 /* Focus visibility */
@@ -95,18 +107,24 @@
     outline-offset: 2px;
 }
 
+
 /* Loading/disabled */
 .sc-btn[aria-busy="true"],
 .sc-btn[aria-disabled="true"],
 .sc-btn:disabled {
     opacity: 0.65;
     pointer-events: none;
+    box-shadow: none;
+    transform: none;
 }
+
 
 /* Inner layout */
 .sc-btn .label {
     display: inline-flex;
     align-items: center;
+    font-weight: 500;
+    letter-spacing: 0.01em;
 }
 
 .sc-btn .spinner {
@@ -127,6 +145,7 @@
 @media (prefers-reduced-motion: reduce) {
     .sc-btn {
         transition-duration: 0.01ms !important;
+        transform: none !important;
     }
     .spinner {
         animation-duration: 0.01ms !important;
