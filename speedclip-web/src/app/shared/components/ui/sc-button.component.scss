@@ -4,24 +4,25 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: var(--spacing-8);
-    padding: var(--spacing-12) var(--spacing-24);
-    border-radius: var(--radius-lg);
-    font-weight: 500;
-
-    border: 1px solid var(--btn-border);
-
 
     background-color: var(--btn-bg);
     color: var(--btn-text);
+
+    //border: 1px solid var(--btn-border);
+    gap: var(--spacing-8);
+    padding: var(--spacing-12) var(--spacing-24);
+
+    border-radius: var(--radius-xl);
+    font-weight: 500;
+    outline: none;
     cursor: pointer;
+
+
+
     transition: transform var(--transition-fast),
     background-color var(--transition-fast),
     opacity var(--transition-fast),
     box-shadow var(--transition-fast);
-
-
-
 
     background-image: linear-gradient(
             to bottom,
@@ -30,11 +31,21 @@
             rgba(0, 0, 0, 0) 50%
     );
 
+    /* desloca o gradiente 1px para cima (+ expande 2px em altura: 1px cima + 1px baixo) */
+    background-position: center -1px;
+    background-size: 100% calc(100% + 2px);
+
+    /* faz com que o background seja pintado dentro da área de padding (não sobreponha borda) */
+    background-origin: border-box;   /* opcional, garante origem no border-box */
+    //background-clip: padding-box;    /* importante: não pinta sobre a borda */
+
+    border: 1px solid var(--btn-border);
+
+    // Adicionando sombra elevada para efeito 3D
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
 
     user-select: none;
     text-decoration: none;
-    // Adicionando sombra elevada para efeito 3D
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
 
 
 

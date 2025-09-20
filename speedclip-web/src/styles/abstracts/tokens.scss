@@ -19,6 +19,7 @@
     --radius-md: 10px;
     --radius-lg: 12px;
     --radius-xl: 16px;
+    --radius-xxl: 24px;
     --radius-card: 12px; /* Adicionado para consistência com .glass-card */
 
     /* Spacing scale */
@@ -76,6 +77,7 @@
     --btn-bg: #1c222b; /* Fundo escuro para tema claro */
     --btn-text: #ffffff; /* Texto branco */
     --btn-border: rgba(180, 180, 180, 0.15);
+
 }
 
 :root[data-theme='dark'] {
