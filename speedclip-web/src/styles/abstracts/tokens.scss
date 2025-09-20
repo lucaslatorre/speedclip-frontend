@@ -75,7 +75,7 @@
     /* Atualização dos botões para tema claro */
     --btn-bg: #1c222b; /* Fundo escuro para tema claro */
     --btn-text: #ffffff; /* Texto branco */
-    --btn-border: color-mix(in srgb, #1c222b 95%, transparent);
+    --btn-border: rgba(180, 180, 180, 0.15);
 }
 
 :root[data-theme='dark'] {
