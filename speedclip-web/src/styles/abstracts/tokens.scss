@@ -116,8 +116,9 @@
     --shadow-md: 0px 8px 24px rgba(0, 0, 0, 0.2);
     --shadow-lg: 0px 12px 28px rgba(0, 0, 0, 0.24);
 
-    /* Inversão para tema escuro */
-    --btn-bg: #ffffff; /* Fundo branco para tema escuro */
-    --btn-text: #0b0f14; /* Texto escuro */
-    --btn-border: color-mix(in srgb, #ffffff 95%, transparent);
+    /* Inverter para usar a superficie/primary do tema escuro (mantém consistência visual) */
+    --btn-bg: var(--color-primary);      /* antes: #ffffff (causava botão branco no dark) */
+    --btn-text: var(--color-text);       /* texto escuro sobre btn-bg */
+    --btn-border: color-mix(in srgb, var(--color-text) 6%, transparent);
+
 }
