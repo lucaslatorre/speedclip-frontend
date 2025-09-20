@@ -12,7 +12,7 @@
     gap: var(--spacing-8);
     padding: var(--spacing-12) var(--spacing-24);
 
-    border-radius: var(--radius-xxl);
+    border-radius: var(--radius-xl);
     font-weight: 500;
     outline: none;
     cursor: pointer;
@@ -124,7 +124,7 @@
     &.sm {
         padding: var(--spacing-8) var(--spacing-16);
         font-size: 0.875rem;
-        border-radius: var(--radius-xxl);
+        border-radius: var(--radius-xl);
     }
 
     &.lg {

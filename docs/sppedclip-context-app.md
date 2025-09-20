@@ -15,7 +15,7 @@ Focado em criadores de conteúdo, podcasters, youtubers e social media managers.
     - Layout responsivo que mantém a simplicidade em todos os dispositivos
 
 # Entidades/Domínio
-- Videos: Upload e ingestão de vídeos (arquivo ou URL)
+- Videos: Upload e ingestão de vídeos (URL do youtube)
 - Cuts: Segmentos de vídeo gerados pelo usuário ou IA
 - Subtitles: Legendas automáticas ou editáveis
 - Presets: Estilos de legenda (TikTok, Instagram, Minimal, Colorful)
