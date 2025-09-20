@@ -41,3 +41,27 @@
   </button>
 </ng-template>
 
+<!-- 'src/app/shared/components/ui/sc-button.component.html' -->
+<!-- Atualize o filtro SVG: adiciona feMorphology (dilate) + blur maior e usa filterUnits para userSpaceOnUse -->
+<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden;" focusable="false" role="presentation">
+    <defs>
+        <filter id="embossText" x="-60%" y="-60%" width="220%" height="220%" filterUnits="userSpaceOnUse" primitiveUnits="userSpaceOnUse">
+            <!-- dilata o alpha para "arredondar" antes do blur -->
+            <feMorphology in="SourceAlpha" operator="dilate" radius="1" result="dilated"/>
+            <!-- suaviza o resultado dilatado para bordas arredondadas -->
+            <feGaussianBlur in="dilated" stdDeviation="3" result="blur"/>
+            <!-- iluminação especular aplicada ao blur (resulta em brilho suave e arredondado) -->
+            <feSpecularLighting in="blur" surfaceScale="6" specularConstant="0.9" specularExponent="18" lighting-color="#ffffff" result="specOut">
+                <fePointLight x="-200" y="-200" z="500"/>
+            </feSpecularLighting>
+            <!-- limita o brilho à forma do texto original para não "vazar" -->
+            <feComposite in="specOut" in2="SourceAlpha" operator="in" result="specMask"/>
+            <!-- compõe brilho sobre o gráfico de origem -->
+            <feComposite in="SourceGraphic" in2="specMask" operator="over" result="final"/>
+            <feMerge>
+                <feMergeNode in="final"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+</svg>

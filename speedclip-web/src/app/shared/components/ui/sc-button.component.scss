@@ -17,36 +17,29 @@
     outline: none;
     cursor: pointer;
 
-
+    // Adicionando sombra elevada para efeito 3D
+    box-shadow: var(--btn-shadow);
 
     transition: transform var(--transition-fast),
     background-color var(--transition-fast),
     opacity var(--transition-fast),
     box-shadow var(--transition-fast);
 
-    background-image: linear-gradient(
-            to bottom,
-            rgba(255, 255, 255, 0.1) 0%,
-            rgba(255, 255, 255, 0.05) 20%,
-            rgba(0, 0, 0, 0) 50%
-    );
+    background-image: var(--btn-gradient-default);
 
     /* desloca o gradiente 1px para cima (+ expande 2px em altura: 1px cima + 1px baixo) */
     background-position: center -1px;
     background-size: 100% calc(100% + 2px);
 
     /* faz com que o background seja pintado dentro da área de padding (não sobreponha borda) */
-    background-origin: border-box;   /* opcional, garante origem no border-box */
+    background-origin: border-box; /* opcional, garante origem no border-box */
     //background-clip: padding-box;    /* importante: não pinta sobre a borda */
 
     border: 1px solid var(--btn-border);
 
-    // Adicionando sombra elevada para efeito 3D
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
 
     user-select: none;
     text-decoration: none;
-
 
 
     // Impede que links com routerLink mostrem sublinhado no hover
@@ -56,30 +49,40 @@
 
     // Efeito 3D no texto
     .label {
-        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+        /* referencia inline do filtro (SVG presente no mesmo documento) */
+        filter: url(#embossText);
+        -webkit-filter: url(#embossText); /* compatibilidade webkit (alguns browsers antigos) */
+
+        /* dicas de renderização para reduzir serrilhado */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+
+        /* força composição própria para evitar repinturas desnecessárias */
+        will-change: filter, transform, opacity;
+
+        /* fallback leve caso o filtro não seja suportado: sombra suave para simular relevo */
+        text-shadow:
+            0 1px 0 rgba(0,0,0,0.45),   /* sombra interna escura */
+            0 2px 6px rgba(255,255,255,0.06); /* brilho sutil */
     }
 
     // Estado de hover - efeito mais pronunciado
     &:hover:not([aria-disabled="true"]) {
-        box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+        box-shadow: var(--btn-shadow-hover);
         // Efeito de brilho sutil no hover
-        background-image: linear-gradient(
-                to bottom,
-                rgba(255, 255, 255, 0.15) 0%,
-                rgba(255, 255, 255, 0.05) 30%,
-                rgba(0, 0, 0, 0) 60%
-        );
+        background-image: var(--btn-gradient-hover);
     }
 
     // Estado de clique - efeito de pressionar
     &:active:not([aria-disabled="true"]) {
         transform: translateY(1px); // Movimento para baixo em vez de escala
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        background-image: linear-gradient(
-                to bottom,
-                rgba(0, 0, 0, 0.05) 0%,
-                rgba(255, 255, 255, 0.05) 70%
-        );
+        //box-shadow: var(--btn-shadow-active);
+        background-image: var(--btn-gradient-active);
+        /* inset sutil para simular contato/pressão — opcional, ajustável */
+        /* se preferir sem inset, remover a linha abaixo */
+        //box-shadow: var(--btn-shadow-active), inset 0px 6px 14px rgba(255,255,255,0.02);
+        box-shadow: var(--btn-shadow-active);
     }
 
     // Variante outline
@@ -88,7 +91,7 @@
         background-color: transparent;
         border: 1px solid var(--color-primary-strong);
         color: var(--color-text);
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        box-shadow: var(--btn-outline-shadow);
 
         .label {
             text-shadow: none; // Sem text-shadow para outline
@@ -96,13 +99,13 @@
 
         &:hover:not([aria-disabled="true"]) {
             background-color: var(--color-primary);
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+            box-shadow: var(--btn-shadow-hover), var(--btn-outline-shadow);
         }
 
         &:active:not([aria-disabled="true"]) {
             background-color: var(--color-primary-strong);
             transform: translateY(1px);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--btn-shadow-active), inset 0px 4px 10px rgba(255, 255, 255, 0.015);
         }
     }
 
@@ -169,11 +172,29 @@
     &[aria-busy="true"] .label {
         opacity: 0.7;
     }
+
+    /* acessibilidade e estados desabilitados */
+    &[aria-disabled="true"],
+    &[disabled] {
+        cursor: not-allowed;
+        opacity: 0.6;
+        transform: none;
+        box-shadow: none;
+    }
 }
 
 // Animação para o spinner
 @keyframes spin {
     to {
         transform: rotate(360deg);
+    }
+}
+
+/* Performance: reduzir blur em telas pequenas se necessário */
+@media (max-width: 480px) {
+    .sc-btn .label {
+        /* reduce blur cost on small devices by removing filter; rely on text-shadow fallback */
+        filter: none;
+        -webkit-filter: none;
     }
 }
