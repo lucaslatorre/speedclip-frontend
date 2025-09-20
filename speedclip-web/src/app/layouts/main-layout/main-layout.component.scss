@@ -89,14 +89,14 @@
 }
 
 .item:hover {
-    background: color-mix(in srgb, var(--color-text) 4%, transparent);
+    background: color-mix(in srgb, var(--color-text) var(--hover-opacity-light, 8%), transparent);
     color: var(--color-text);
     text-decoration: none;
 }
 
 .item.active {
+    background: color-mix(in srgb, var(--color-text) var(--active-opacity-light, 12%), transparent);
     color: var(--color-text);
-    background: color-mix(in srgb, var(--color-text) 6%, transparent);
 }
 
 .icon {

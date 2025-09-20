@@ -1,59 +1,52 @@
-# SpeedclipWeb
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.1.
+Contexto do produto:
+- SaaS que corta vídeos longos em clipes curtos, com legendas e exportação.
+- Fluxo V1: upload/URL → editor de cortes → exportação (com/sem legendas) → histórico.
+- Fluxo V2 futuro: cortes sugeridos por IA.
+  Stack principal:
+- Frontend: Angular SPA (Reactive Forms, RxJS, UI minimalista + glass).
+- Backend: Node.js + NestJS.
+- Banco: PostgreSQL.
+- Processamento: FFmpeg.
+- IA: Whisper/Gemini (futuro).
+- Cloud: AWS/GCP com storage, filas, Lambda/Fargate.
 
-## Development server
 
-To start a local development server, run:
+Padrões de código:
+- TypeScript/Angular: ChangeDetectionStrategy.OnPush; RxJS com `takeUntil`/`destroyRef`; `async` pipe; componentes e serviços coesos; formulários reativos; acessibilidade ARIA; temas via CSS variables.
+- NestJS: módulos coesos; DTOs com class‑validator/class‑transformer; Guards/Interceptors para auth, rate limit, logging; serviços sem lógica em controllers; DI correta.
+- PostgreSQL: migrations idempotentes; índices para filtros/ordenação; evitar N+1; transações e níveis de isolamento adequados.
+- FFmpeg: construir comandos de forma segura (lista de args, sem shell concat); validar parâmetros; limitar codecs/presets suportados; timeouts e limites de CPU/memória; processar em workers/filas.
+- Cloud: uploads com URL pré‑assinada; objetos versionados e políticas de ciclo de vida; CDN para vídeos; jobs assíncronos em fila; segredos no Secret Manager; IaC.
 
-```bash
-ng serve
-```
+Segurança:
+- Autenticação e autorização por recurso; princípio do menor privilégio.
+- Validação/normalização de entrada; sanitização contra injeções (SQL, shell, path traversal).
+- CORS restrito; CSRF onde aplicável; headers de segurança; `color-scheme` e temas sem anti‑padrões de contraste.
+- Rate limiting, circuit breaker e backoff; limites no FFmpeg e storage.
+- Logs estruturados sem PII sensível; trilhas de auditoria.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Performance:
+- Streaming e chunked upload; pré‑visualização progressiva.
+- Paginação, busca indexada; cache em nível de consulta/resposta; CDN.
+- Processamento assíncrono e paralelismo controlado; evitar cópias de vídeo; reuso de artefatos.
+- Frontend: lazy‑loading, code‑splitting, imagens responsivas, evitar trabalho desnecessário de change detection.
 
-## Code scaffolding
+Custos:
+- Processar apenas cortes selecionados; evitar transcodificar o vídeo inteiro.
+- Policies de ciclo de vida no storage (glacier/nearline); limpeza de temporários.
+- Egress mínimo (usar CDN e regions adequadas); compressão.
+- Ajustar filas/compute sob demanda (Fargate/Lambda/Spot) e tamanhos de instância.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
 
-```bash
-ng generate component component-name
-```
+Qualidade e testes:
+- Unit: Jest (NestJS) e TestBed (Angular).
+- Integração: banco em container e filas falsas; contratos HTTP.
+- E2E: Playwright para fluxos principais (upload → cortes → exportação).
+- Monitoração: métricas e traces (OpenTelemetry), logs estruturados, alertas por SLO.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Restrições:
+- Não usar código de terceiros sem licença compatível; cite referências.
+- Evitar “magic numbers”; externalizar configs (.env/ConfigModule).
+- Manter respostas curtas; sem perguntas a menos que absolutamente necessário.
 
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

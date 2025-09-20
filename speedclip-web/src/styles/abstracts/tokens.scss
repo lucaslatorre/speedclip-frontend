@@ -19,6 +19,7 @@
     --radius-md: 10px;
     --radius-lg: 12px;
     --radius-xl: 16px;
+    --radius-card: 12px; /* Adicionado para consistência com .glass-card */
 
     /* Spacing scale */
     --spacing-4: 4px;
@@ -37,11 +38,16 @@
     --font-size-base: 16px;
     --line-height-base: 1.65;
 
-    /* Glass defaults (overridden by theme) */
-    --glass-bg: rgba(255, 255, 255, 0.07);
-    --glass-blur: 10px;
-    --glass-shadow: none;
+    /* Cores para tema claro (default) */
+    --color-bg: #ffffff;
+    --color-surface: #f8f9fa;
+    --color-text: #1c222b;
+    --color-text-muted: rgba(28, 34, 43, 0.65);
+    --color-accent: #3b82f6;
+    --color-primary: #f3f4f6;
+    --color-primary-strong: #e5e7eb;
 
+    /* Status colors */
     --color-success: #16a34a;
     --color-warn: #f59e0b;
     --color-error: #ef4444;
@@ -49,22 +55,27 @@
     /* Links e breadcrumbs em neutro, não azul */
     --color-link: var(--color-text);
 
+    /* Elementos de divisão e contorno */
     --divider-color: color-mix(in srgb, var(--color-text) 10%, transparent);
-
-
-    /* Glass leve para topbar */
     --glass-border: color-mix(in srgb, var(--color-text) 12%, transparent);
+
+    /* Glass no topbar */
+    --glass-bg: rgba(255, 255, 255, 0.07);
+    --glass-blur: 10px; /* Adicionado - valor médio no range recomendado 8-12px */
 
     /* Sistema de sombras */
     --shadow-sm: 0px 2px 8px rgba(0, 0, 0, 0.06);
     --shadow-md: 0px 8px 24px rgba(0, 0, 0, 0.12);
     --shadow-lg: 0px 12px 28px rgba(0, 0, 0, 0.16);
 
+    /* Hover e interação */
+    --hover-opacity-light: 8%; /* Aumentado de 4% para 8% */
+    --active-opacity-light: 12%; /* Adicionado para consistência */
+
     /* Atualização dos botões para tema claro */
     --btn-bg: #1c222b; /* Fundo escuro para tema claro */
     --btn-text: #ffffff; /* Texto branco */
     --btn-border: color-mix(in srgb, #1c222b 95%, transparent);
-
 }
 
 :root[data-theme='dark'] {
@@ -76,7 +87,6 @@
     /* Primário neutro escuro (um pouco acima da surface) */
     --color-primary: #1c222b; /* graphite 800 */
     --color-primary-strong: #171c23; /* mais escuro para active */
-    --on-primary: #eaecef;
 
     /* Azul apenas para acentos visuais (focus, chips eventuais) */
     --color-accent: #5b8def;
@@ -90,10 +100,14 @@
 
     --divider-color: color-mix(in srgb, var(--color-text) 14%, transparent);
 
-    /* Glass sutil no topbar (sem "1px solid" no token) */
+    /* Glass sutil no topbar */
     --glass-bg: rgba(17, 22, 28, 0.08); /* alpha 8% */
     --glass-border: color-mix(in srgb, var(--color-text) 12%, transparent);
+    --glass-blur: 10px; /* Adicionado para consistência */
 
+    /* Hover e interação */
+    --hover-opacity-dark: 8%; /* Adicionado para consistência */
+    --active-opacity-dark: 12%; /* Adicionado para consistência */
 
     /* Sistema de sombras para tema escuro */
     --shadow-sm: 0px 2px 8px rgba(0, 0, 0, 0.12);

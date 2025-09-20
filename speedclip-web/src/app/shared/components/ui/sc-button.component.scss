@@ -1,6 +1,9 @@
 /* SpeedClip Button Styles (sc-button)
    Uses only CSS tokens; no hardcoded colors. */
 
+:host {
+    display: inline-block;
+}
 
 .sc-btn {
     --_h: 40px; /* default md */

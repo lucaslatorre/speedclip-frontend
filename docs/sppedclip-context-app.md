@@ -1,8 +1,18 @@
 🎬 SpeedClip – Contexto do App
 
 # Resumo
-SpeedClip é um SaaS que transforma vídeos longos (upload direto ou URL do YouTube) em cortes curtos prontos para redes sociais, com legendas editáveis e exportação múltipla.
+- SpeedClip é um SaaS que transforma vídeos longos (upload direto ou URL do YouTube) em cortes 
+curtos prontos para redes sociais, com legendas editáveis e exportação múltipla.
 Focado em criadores de conteúdo, podcasters, youtubers e social media managers.
+- Stack: Angular, NestJS, PostgreSQL, FFmpeg, AWS/GCP.
+- Design UI/UX:
+    - Estética minimalista e moderna inspirada no ChatGPT e produtos Apple
+    - Interface limpa com amplo espaço negativo e tipografia clara
+    - Paleta de cores monocromática (preto, cinza, branco) com acentos sutis
+    - Elementos UI com cantos suavemente arredondados e sombras sutis
+    - Animações fluidas e discretas para transições
+    - Hierarquia visual clara com foco no conteúdo principal (vídeo)
+    - Layout responsivo que mantém a simplicidade em todos os dispositivos
 
 # Entidades/Domínio
 - Videos: Upload e ingestão de vídeos (arquivo ou URL)
