@@ -39,8 +39,9 @@ describe('UploadPageComponent', () => {
         comp.form.controls.url.setValue('https://youtu.be/abc');
         comp.form.controls.editBefore.setValue(true);
         comp.submitUrl();
-
+        // usar ID de 11 caracteres para passar no validator
+        comp.form.controls.url.setValue('https://youtu.be/ABCDEFGHIJK');
         expect(router.navigate).toHaveBeenCalled();
     });
 });
-
+        expect(router.navigate).toHaveBeenCalledWith(['/editor', 'vid1']);
