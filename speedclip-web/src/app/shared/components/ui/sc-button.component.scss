@@ -1,160 +1,168 @@
 // Estilos base para o componente de botão
-    .sc-btn {
-        position: relative;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: var(--spacing-8);
-        padding: var(--spacing-12) var(--spacing-24);
-        // Aumentando o border-radius para corresponder à imagem
-        border-radius: 20px;
-        font-weight: 600; // Aumentando para dar mais destaque
-        border: 1px solid var(--btn-border);
-        // Adicionando gradiente sutil para efeito 3D
-        background-image: linear-gradient(
+.sc-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-8);
+    padding: var(--spacing-12) var(--spacing-24);
+    border-radius: var(--radius-lg);
+    font-weight: 500;
+
+    border: 1px solid var(--btn-border);
+
+
+    background-color: var(--btn-bg);
+    color: var(--btn-text);
+    cursor: pointer;
+    transition: transform var(--transition-fast),
+    background-color var(--transition-fast),
+    opacity var(--transition-fast),
+    box-shadow var(--transition-fast);
+
+
+
+
+    background-image: linear-gradient(
             to bottom,
             rgba(255, 255, 255, 0.1) 0%,
             rgba(255, 255, 255, 0.05) 20%,
             rgba(0, 0, 0, 0) 50%
-        );
-        background-color: var(--btn-bg);
-        color: var(--btn-text);
-        cursor: pointer;
-        transition: transform var(--transition-fast),
-        background-color var(--transition-fast),
-        opacity var(--transition-fast),
-        box-shadow var(--transition-fast);
-        user-select: none;
+    );
+
+
+    user-select: none;
+    text-decoration: none;
+    // Adicionando sombra elevada para efeito 3D
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+
+
+
+    // Impede que links com routerLink mostrem sublinhado no hover
+    &:hover {
         text-decoration: none;
-        // Adicionando sombra elevada para efeito 3D
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
 
-        // Efeito 3D no texto
-        .label {
-            text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
-        }
+    // Efeito 3D no texto
+    .label {
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+    }
 
-        // Impede que links com routerLink mostrem sublinhado no hover
-        &:hover {
-            text-decoration: none;
-        }
-
-        // Estado de hover - efeito mais pronunciado
-        &:hover:not([aria-disabled="true"]) {
-            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            // Efeito de brilho sutil no hover
-            background-image: linear-gradient(
+    // Estado de hover - efeito mais pronunciado
+    &:hover:not([aria-disabled="true"]) {
+        box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+        // Efeito de brilho sutil no hover
+        background-image: linear-gradient(
                 to bottom,
                 rgba(255, 255, 255, 0.15) 0%,
                 rgba(255, 255, 255, 0.05) 30%,
                 rgba(0, 0, 0, 0) 60%
-            );
-        }
+        );
+    }
 
-        // Estado de clique - efeito de pressionar
-        &:active:not([aria-disabled="true"]) {
-            transform: translateY(1px); // Movimento para baixo em vez de escala
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2),
-                       inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            background-image: linear-gradient(
+    // Estado de clique - efeito de pressionar
+    &:active:not([aria-disabled="true"]) {
+        transform: translateY(1px); // Movimento para baixo em vez de escala
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        background-image: linear-gradient(
                 to bottom,
                 rgba(0, 0, 0, 0.05) 0%,
                 rgba(255, 255, 255, 0.05) 70%
-            );
+        );
+    }
+
+    // Variante outline
+    &.outline {
+        background-image: none;
+        background-color: transparent;
+        border: 1px solid var(--color-primary-strong);
+        color: var(--color-text);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+        .label {
+            text-shadow: none; // Sem text-shadow para outline
         }
 
-        // Variante outline - adaptada para efeito 3D
-        &.outline {
-            background-image: none;
-            background-color: transparent;
-            border: 1px solid var(--color-primary-strong);
-            color: var(--color-text);
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-
-            .label {
-                text-shadow: none; // Sem text-shadow para outline
-            }
-
-            &:hover:not([aria-disabled="true"]) {
-                background-color: var(--color-primary);
-                box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
-            }
-
-            &:active:not([aria-disabled="true"]) {
-                background-color: var(--color-primary-strong);
-                transform: translateY(1px);
-                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            }
+        &:hover:not([aria-disabled="true"]) {
+            background-color: var(--color-primary);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
         }
 
-        // Variante text - adaptada para manter coerência
-        &.text {
-            background-color: transparent;
-            background-image: none;
-            border: none;
-            color: var(--color-text);
-            padding: var(--spacing-8) var(--spacing-16);
+        &:active:not([aria-disabled="true"]) {
+            background-color: var(--color-primary-strong);
+            transform: translateY(1px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+    }
+
+    // Variante text (sem fundo)
+    &.text {
+        background-color: transparent;
+        background-image: none;
+        border: none;
+        color: var(--color-text);
+        padding: var(--spacing-8) var(--spacing-16);
+        box-shadow: none;
+
+
+        .label {
+            text-shadow: none; // Sem text-shadow para text variant
+        }
+
+        &:hover:not([aria-disabled="true"]) {
+            background-color: color-mix(in srgb, var(--color-text) var(--hover-opacity-light), transparent);
             box-shadow: none;
-
-            .label {
-                text-shadow: none; // Sem text-shadow para text variant
-            }
-
-            &:hover:not([aria-disabled="true"]) {
-                background-color: color-mix(in srgb, var(--color-text) var(--hover-opacity-light), transparent);
-                box-shadow: none;
-            }
-
-            &:active:not([aria-disabled="true"]) {
-                background-color: color-mix(in srgb, var(--color-text) var(--active-opacity-light), transparent);
-                transform: translateY(1px);
-            }
         }
 
-        // Tamanhos do botão - mantidos, mas adaptados para o novo estilo
-        &.sm {
-            padding: var(--spacing-8) var(--spacing-16);
-            font-size: 0.875rem;
-            border-radius: 16px; // Border-radius reduzido proporcionalmente
-        }
-
-        &.lg {
-            padding: var(--spacing-16) var(--spacing-32);
-            font-size: 1.125rem;
-            border-radius: 24px; // Border-radius aumentado proporcionalmente
-        }
-
-        // Estado desabilitado - adaptado para o novo estilo
-        &[disabled], &[aria-disabled="true"] {
-            opacity: 0.5;
-            cursor: not-allowed;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-            pointer-events: none;
-            background-image: none;
-        }
-
-        // Estilo para spinner de loading - mantido
-        .spinner {
-            display: inline-block;
-            width: 16px;
-            height: 16px;
-            border: 2px solid currentColor;
-            border-radius: 50%;
-            border-right-color: transparent;
-            animation: spin 0.75s linear infinite;
-        }
-
-        // Quando em loading, texto fica levemente transparente para destacar o spinner
-        &[aria-busy="true"] .label {
-            opacity: 0.7;
+        &:active:not([aria-disabled="true"]) {
+            background-color: color-mix(in srgb, var(--color-text) var(--active-opacity-light), transparent);
+            transform: translateY(1px);
         }
     }
 
-    // Animação para o spinner - mantida
-    @keyframes spin {
-        to {
-            transform: rotate(360deg);
-        }
+    // Tamanhos do botão
+    &.sm {
+        padding: var(--spacing-8) var(--spacing-16);
+        font-size: 0.875rem;
+        border-radius: var(--radius-md);
     }
+
+    &.lg {
+        padding: var(--spacing-16) var(--spacing-32);
+        font-size: 1.125rem;
+        border-radius: var(--radius-xl);
+        //border-radius: 24px;
+    }
+
+    // Estado desabilitado - mesmo estilo para disabled e aria-disabled
+    &[disabled], &[aria-disabled="true"] {
+        opacity: 0.5;
+        cursor: not-allowed;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        pointer-events: none;
+        background-image: none;
+    }
+
+    // Estilo para spinner de loading
+    .spinner {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        border: 2px solid currentColor;
+        border-radius: 50%;
+        border-right-color: transparent;
+        animation: spin 0.75s linear infinite;
+    }
+
+    // Quando em loading, texto fica levemente transparente para destacar o spinner
+    &[aria-busy="true"] .label {
+        opacity: 0.7;
+    }
+}
+
+// Animação para o spinner
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
