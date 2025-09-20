@@ -12,7 +12,7 @@
     gap: var(--spacing-8);
     padding: var(--spacing-12) var(--spacing-24);
 
-    border-radius: var(--radius-xl);
+    border-radius: var(--radius-xxl);
     font-weight: 500;
     outline: none;
     cursor: pointer;
@@ -49,22 +49,8 @@
 
     // Efeito 3D no texto
     .label {
-        /* referencia inline do filtro (SVG presente no mesmo documento) */
-        filter: url(#embossText);
-        -webkit-filter: url(#embossText); /* compatibilidade webkit (alguns browsers antigos) */
+        //text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
 
-        /* dicas de renderização para reduzir serrilhado */
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-rendering: optimizeLegibility;
-
-        /* força composição própria para evitar repinturas desnecessárias */
-        will-change: filter, transform, opacity;
-
-        /* fallback leve caso o filtro não seja suportado: sombra suave para simular relevo */
-        text-shadow:
-            0 1px 0 rgba(0,0,0,0.45),   /* sombra interna escura */
-            0 2px 6px rgba(255,255,255,0.06); /* brilho sutil */
     }
 
     // Estado de hover - efeito mais pronunciado
@@ -124,12 +110,12 @@
         }
 
         &:hover:not([aria-disabled="true"]) {
-            background-color: color-mix(in srgb, var(--color-text) var(--hover-opacity-light), transparent);
+            background-color: color-mix(in srgb, var(--color-text) var(--hover-opacity), transparent);
             box-shadow: none;
         }
 
         &:active:not([aria-disabled="true"]) {
-            background-color: color-mix(in srgb, var(--color-text) var(--active-opacity-light), transparent);
+            background-color: color-mix(in srgb, var(--color-text) var(--active-opacity), transparent);
             transform: translateY(1px);
         }
     }
@@ -138,13 +124,13 @@
     &.sm {
         padding: var(--spacing-8) var(--spacing-16);
         font-size: 0.875rem;
-        border-radius: var(--radius-md);
+        border-radius: var(--radius-xxl);
     }
 
     &.lg {
         padding: var(--spacing-16) var(--spacing-32);
         font-size: 1.125rem;
-        border-radius: var(--radius-xl);
+        border-radius: var(--radius-xxl);
         //border-radius: 24px;
     }
 
@@ -190,11 +176,3 @@
     }
 }
 
-/* Performance: reduzir blur em telas pequenas se necessário */
-@media (max-width: 480px) {
-    .sc-btn .label {
-        /* reduce blur cost on small devices by removing filter; rely on text-shadow fallback */
-        filter: none;
-        -webkit-filter: none;
-    }
-}

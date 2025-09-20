@@ -85,18 +85,22 @@
     padding: 0 var(--spacing-12);
     border-radius: var(--radius-md);
     //color: inherit;
-    color: var(--color-text-muted);
+    color: var(--menu-text-color);
+
+
+
 }
 
 .item:hover {
-    background: color-mix(in srgb, var(--color-text) var(--hover-opacity-light, 8%), transparent);
+    background: color-mix(in srgb, var(--color-text) var(--hover-opacity-menu), transparent);
     color: var(--color-text);
     text-decoration: none;
 }
 
 .item.active {
-    background: color-mix(in srgb, var(--color-text) var(--active-opacity-light, 12%), transparent);
+    background: color-mix(in srgb, var(--color-text) var(--active-opacity-menu), transparent);
     color: var(--color-text);
+
 }
 
 .icon {

@@ -70,8 +70,14 @@
     --shadow-lg: 0px 12px 28px rgba(0, 0, 0, 0.16);
 
     /* Hover e interação */
-    --hover-opacity-light: 8%; /* Aumentado de 4% para 8% */
-    --active-opacity-light: 12%; /* Adicionado para consistência */
+    --hover-opacity: 8%; /* Aumentado de 4% para 8% */
+    --active-opacity: 12%; /* Adicionado para consistência */
+
+
+
+    --hover-opacity-menu: 4%;    /* hover sutil em light */
+    --active-opacity-menu: 8%;
+    --menu-text-color: var(--color-text);
 
     /* Atualização dos botões para tema claro */
     --btn-bg: #1c222b; /* Fundo escuro para tema claro */
@@ -79,7 +85,7 @@
     --btn-border: rgba(180, 180, 180, 0.15);
 
     --btn-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
-    --btn-shadow-hover: 0 5px 12px rgba(0, 0, 0, 0.2);
+    --btn-shadow-hover: 0 5px 12px rgba(0, 0, 0, 0.20);
     --btn-shadow-active: 0px 2px 6px rgba(0,0,0,0.10);
 
     --btn-outline-shadow: 0 1px 0 rgba(0,0,0,0.04);
@@ -135,8 +141,12 @@
     --glass-blur: 10px; /* Adicionado para consistência */
 
     /* Hover e interação */
-    --hover-opacity-dark: 8%; /* Adicionado para consistência */
-    --active-opacity-dark: 12%; /* Adicionado para consistência */
+    --hover-opacity: 8%; /* Adicionado para consistência */
+    --active-opacity: 12%; /* Adicionado para consistência */
+
+    --hover-opacity-menu: 6%; /* Aumentado de 4% para 8% */
+    --active-opacity-menu: 12%;
+    --menu-text-color: var(--color-text-muted);
 
     /* Sistema de sombras para tema escuro */
     --shadow-sm: 0px 4px 14px rgba(0, 0, 0, 0.40);
